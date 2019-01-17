@@ -40,16 +40,16 @@ class My extends React.Component {
             {/*<WhiteSpace />*/}
             {/*<WingBlank><div className="sub-title">Show cancel button</div></WingBlank>*/}
             <SearchBar
-                value={this.state.value}
-                placeholder="Search"
-                onSubmit={value => console.log(value, 'onSubmit')}
-                onClear={value => console.log(value, 'onClear')}
-                onFocus={() => console.log('onFocus')}
-                onBlur={() => console.log('onBlur')}
-                onCancel={() => console.log('onCancel')}
-                showCancelButton
-                onChange={this.onChange} ref={ref => this.autoFocusInst = ref}
-            />
+            value={this.state.value}
+            placeholder="Search"
+            onSubmit={value => console.log(value, 'onSubmit')}
+            onClear={value => console.log(value, 'onClear')}
+            onFocus={() => console.log('onFocus')}
+            onBlur={() => console.log('onBlur')}
+            onCancel={() => console.log('onCancel')}
+            showCancelButton
+            onChange={this.onChange} ref={ref => this.autoFocusInst = ref}
+        />
         </div>);
     }
 }

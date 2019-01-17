@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { TabBar,ListView} from 'antd-mobile';
+import { TabBar,ListView,SearchBar} from 'antd-mobile';
 import 'antd-mobile/dist/antd-mobile.css';
 const data = [
     {
@@ -58,12 +58,23 @@ class LifeView extends React.Component {
 
         this.state = {
             dataSource,
+            value:"美食",
             isLoading: true,
             height: (document.documentElement.clientHeight * 3) / 4,
         };
     }
+    onChange= (value) => {
+        this.setState({ value });
+    };
+    clear = () => {
+        this.setState({ value: '' });
+    };
+    handleClick = () => {
+        this.manualFocusInst.focus();
+    }
 
     componentDidMount() {
+        this.autoFocusInst.focus();
         const hei = document.documentElement.clientHeight - ReactDOM.findDOMNode(this.lv).parentNode.offsetTop;
         setTimeout(() => {
             genData();
@@ -130,10 +141,22 @@ class LifeView extends React.Component {
         };
 
         return (
+            <div>
+            <SearchBar
+                value={this.state.value}
+                placeholder="Search"
+                onSubmit={value => console.log(value, 'onSubmit')}
+                onClear={value => console.log(value, 'onClear')}
+                onFocus={() => console.log('onFocus')}
+                onBlur={() => console.log('onBlur')}
+                onCancel={() => console.log('onCancel')}
+                showCancelButton
+                onChange={this.onChange} ref={ref => this.autoFocusInst = ref}
+            />
             <ListView
                 ref={el => this.lv = el}
                 dataSource={this.state.dataSource}
-                renderHeader={() => <span>不知道什么jer列表</span>}
+                renderHeader={() => <span>{this.state.value?this.state.value:"优惠"}专区</span>}
                 renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
                     {this.state.isLoading ? 'Loading...' : 'Loaded'}
                 </div>)}
@@ -152,6 +175,7 @@ class LifeView extends React.Component {
                 onEndReached={this.onEndReached}
                 onEndReachedThreshold={10}
             />
+            </div>
         );
     }
 }
