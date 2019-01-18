@@ -230,6 +230,7 @@ body {
     position: absolute;
     right: -0.5rem;
     top: -0.5rem;
+    line-height: 1rem;
 }
 .item li .aplicon img {
     width: 100%;
