@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { List, Switch, Calendar,Popover, NavBar, Icon } from 'antd-mobile';
+import React from 'react';
+import { List, Switch, Calendar,Popover} from 'antd-mobile';
 import enUS from 'antd-mobile/lib/calendar/locale/en_US';
 import zhCN from 'antd-mobile/lib/calendar/locale/zh_CN';
 import 'antd-mobile/dist/antd-mobile.css';

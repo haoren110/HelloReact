@@ -4,7 +4,14 @@ import { TabBar,ListView} from 'antd-mobile';
 import 'antd-mobile/dist/antd-mobile.css';
 import LifeView from '../Life';
 import Second from '../Second'
-import My from '../My'
+import My from '../My';
+
+import home1 from '../../img/home1.png';
+import home from '../../img/home.png';
+import add from '../../img/add.png';
+import add1 from '../../img/add1.png';
+import mine from '../../img/mine.png';
+import mine1 from '../../img/mine1.png';
 
 class TaBarView extends React.Component {
     constructor(props) {
@@ -45,22 +52,21 @@ class TaBarView extends React.Component {
                     prerenderingSiblingsNumber={0}
                 >
                     <TabBar.Item
-                        title="生活"
+                        title="首页"
                         key="Life"
                         icon={<div style={{
                             width: '22px',
                             height: '22px',
-                            background: 'url(https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg) center center /  21px 21px no-repeat' }}
+                            background:`url(${home1}) center center /  21px 21px no-repeat` }}
                         />
                         }
                         selectedIcon={<div style={{
                             width: '22px',
                             height: '22px',
-                            background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat' }}
+                            background: `url(${home}) center center /  21px 21px no-repeat` }}
                         />
                         }
                         selected={this.state.selectedTab === 'blueTab'}
-                        badge={9}
                         onPress={() => {
                             this.setState({
                                 selectedTab: 'blueTab',
@@ -75,19 +81,18 @@ class TaBarView extends React.Component {
                             <div style={{
                                 width: '22px',
                                 height: '22px',
-                                background: 'url(https://gw.alipayobjects.com/zos/rmsportal/BTSsmHkPsQSPTktcXyTV.svg) center center /  21px 21px no-repeat' }}
+                                background: `url(${add1}) center center /  21px 21px no-repeat` }}
                             />
                         }
                         selectedIcon={
                             <div style={{
                                 width: '22px',
                                 height: '22px',
-                                background: 'url(https://gw.alipayobjects.com/zos/rmsportal/ekLecvKBnRazVLXbWOnE.svg) center center /  21px 21px no-repeat' }}
+                                background: `url(${add}) center center /  21px 21px no-repeat` }}
                             />
                         }
-                        title="口碑"
+                        title="新建"
                         key="Koubei"
-                        badge={'99+'}
                         selected={this.state.selectedTab === 'redTab'}
                         onPress={() => {
                             this.setState({
@@ -103,17 +108,17 @@ class TaBarView extends React.Component {
                             <div style={{
                                 width: '22px',
                                 height: '22px',
-                                background: 'url(https://zos.alipayobjects.com/rmsportal/psUFoAMjkCcjqtUCNPxB.svg) center center /  21px 21px no-repeat' }}
+                                background: `url(${mine1}) center center /  21px 21px no-repeat` }}
                             />
                         }
                         selectedIcon={
                             <div style={{
                                 width: '22px',
                                 height: '22px',
-                                background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  21px 21px no-repeat' }}
+                                background: `url(${mine1}) center center /  21px 21px no-repeat` }}
                             />
                         }
-                        title="好友"
+                        title="我的"
                         key="Friend"
                         dot={false}
                         selected={this.state.selectedTab === 'greenTab'}
@@ -125,20 +130,20 @@ class TaBarView extends React.Component {
                     >
                         {this.renderContent('Friend')}
                     </TabBar.Item>
-                    <TabBar.Item
-                        icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg' }}
-                        selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
-                        title="我的"
-                        key="my"
-                        selected={this.state.selectedTab === 'yellowTab'}
-                        onPress={() => {
-                            this.setState({
-                                selectedTab: 'yellowTab',
-                            });
-                        }}
-                    >
-                        <My />
-                    </TabBar.Item>
+                    {/*<TabBar.Item*/}
+                        {/*icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg' }}*/}
+                        {/*selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}*/}
+                        {/*title="我的"*/}
+                        {/*key="my"*/}
+                        {/*selected={this.state.selectedTab === 'yellowTab'}*/}
+                        {/*onPress={() => {*/}
+                            {/*this.setState({*/}
+                                {/*selectedTab: 'yellowTab',*/}
+                            {/*});*/}
+                        {/*}}*/}
+                    {/*>*/}
+                        {/*<My />*/}
+                    {/*</TabBar.Item>*/}
                 </TabBar>
             </div>
         );
