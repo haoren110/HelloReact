@@ -11,8 +11,8 @@ import mine4 from '../../img/traHistory.png';
 const array=[
     {icon:`${mine1}`,text:"通知公告",url:"http://www.baidu.com",num:0},
     {icon:`${mine2}`,text:"抄送",url:"http://www.baidu.com",num:0},
-    {icon:`${mine3}`,text:"事务历史",url:"http://www.baidu.com",num:0},
-    {icon:`${mine4}`,text:"出差历史",url:"http://www.baidu.com",num:0}
+    {icon:`${mine3}`,text:"事务历史",url:"http://www.baidu.com"},
+    {icon:`${mine4}`,text:"出差历史",url:"http://www.baidu.com"}
     ];
 const data = Array.from(array).map((_val, i) => ({
     icon: _val.icon,
@@ -22,9 +22,8 @@ function Items (props) {
     const array = props.array;
     const listItems = array.map((number) =>
         // 又对啦！key应该在数组的上下文中被指定
-        <ColumItem key={number.toString()}
+        <ColumItem key={number.text}
                   data={number} />
-
     );
     return (
         <ul className="item clearfix">{listItems}</ul>
