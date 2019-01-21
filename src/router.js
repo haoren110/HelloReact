@@ -1,17 +1,18 @@
 import React from 'react';
-import { Router, Route, Switch,BrowserRouter } from 'dva/router';
+import {Router, Route, Switch,HashRouter, Redirect} from 'dva/router';
 import TabBar from '../src/component/TabBar';
-import Detail from '../src/component/Detail';
-import Search from '../src/component/Search';
+import Signature from '../src/component/Signature';
+import Travel from '../src/component/Travel';
 function RouterConfig({ history }) {
     return (
-        <BrowserRouter>
-            <div>
-                <Route path="/" exact component={TabBar} />
-                <Route path="/detail"  component={Detail} />
-                <Route path="/search"  component={Search} />
-            </div>
-        </BrowserRouter>
+        <Router history={history}>
+            <Switch>
+            <Route path="/" exact component={TabBar}/>
+                <Route path="/signature" exact component={Signature} />
+                <Route path="/travel" exact component={Travel} />
+                <Redirect to='/' />
+            </Switch>
+        </Router>
     );
 }
 
