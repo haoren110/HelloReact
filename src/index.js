@@ -3,19 +3,13 @@
 // import {BrowserRouter,HashRouter,Route} from 'react-router-dom';
 import dva from 'dva';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 // 1. Initialize
-const app = dva({
-    initialState:{
-
-    }
-});
+const app = dva();
 // 2. Plugins
 // app.use({});
 
 // // 3. Model
-app.model(require('../src/component/Second/model').default);
+// app.model(require('../src/component/Second/model').default);
  app.model(require('../src/component/TabBar/model').default);
 
 // 4. Router

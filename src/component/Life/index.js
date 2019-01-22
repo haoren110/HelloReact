@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ColumItem from '../ColumnItem';
-import {ListView,Grid} from 'antd-mobile';
+import {Grid} from 'antd-mobile';
 import './index.css';
 import 'antd-mobile/dist/antd-mobile.css';
 import bannerImage from  '../../img/ban0.jpg';
@@ -29,14 +29,9 @@ function Items (props) {
         <ul className="item clearfix">{listItems}</ul>
     );
 }
-const data1 = Array.from(new Array(9)).map(() => ({
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/WXoqXTHrSnRcUwEaQgXJ.png',
-}));
+
 
 class LifeView extends  React.Component{
-    constructor(props){
-          super(props);
-    }
     render() {
         return (<div className="container">
             <div className="banner">

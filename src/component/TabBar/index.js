@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { TabBar,ListView} from 'antd-mobile';
+import React from 'react';
+import { TabBar} from 'antd-mobile';
+import { connect } from 'dva';
 import 'antd-mobile/dist/antd-mobile.css';
 import LifeView from '../Life';
 import Second from '../Second'
-import My from '../My';
 import './index.css';
 import home1 from '../../img/home1.png';
 import home from '../../img/home.png';
@@ -16,13 +15,19 @@ import vip from '../../img/vip.png';
 class TaBarView extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props)
+       //console.log(props)
         this.state = {
             selectedTab: 'blueTab',
             hidden: false,
             isPrivilege:true,
             attributeState:4
         };
+    }
+    UNSAFE_componentWillMount() {
+        const { taBarView, dispatch } = this.props;
+        dispatch({
+            type: 'taBarView/changeHidden'
+        });
     }
 
     renderContent(pageText) {
@@ -117,7 +122,7 @@ class TaBarView extends React.Component {
     }
 
     render() {
-
+        const { taBarView, dispatch, history } = this.props;
         return (
             <div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
                 <TabBar
@@ -226,4 +231,4 @@ class TaBarView extends React.Component {
         );
     }
 }
-export  default TaBarView;
+export  default connect(({TaBarView}) => ({TaBarView}))(TaBarView) ;

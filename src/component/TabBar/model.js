@@ -1,17 +1,25 @@
 export default {
     namespace: 'TabBar',
     state: {
-        title: 'Home',
-        formData: {}
+        selectedTab: 'blueTab',
+        hidden: false,
+        isPrivilege:true,
+        attributeState:4,
+        title:'title'
     },
     reducers: {
-        getFormData(state, {payload: formData}) {
-            state.formData = formData;
+        changeHidden(state) {
+            state.hidden = !state.hidden;
             console.log(state);
             return {...state};
         }
     },
     effects: {
-
+        *postFormData({payload}, {select, put}) {
+            yield put({type: 'getFormData', payload});
+            yield select(({indexPage}) => {
+                console.log(indexPage);
+            });
+        }
     }
 };
