@@ -8,7 +8,7 @@ class ColumItem extends  React.Component{
         super(props);
     }
     componentDidMount() {
-        console.log(this.props)
+       // console.log(this.props)
     }
 
     render() {

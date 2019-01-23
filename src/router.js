@@ -3,6 +3,8 @@ import {Router, Route, Switch} from 'dva/router';
 import TabBar from '../src/component/TabBar';
 import Signature from '../src/component/Signature';
 import Travel from '../src/component/Travel';
+import {Provider} from 'react-redux';
+import store from './store';
 const routes=[{
     path:'/',
     component:TabBar
@@ -17,6 +19,7 @@ const routes=[{
 ];
 function RouterConfig({ history }) {
     return (
+        <Provider store={store}>
         <Router history={history}>
             <Switch>
                 {routes.map((route,i)=>{
@@ -24,6 +27,7 @@ function RouterConfig({ history }) {
                 })}
             </Switch>
         </Router>
+        </Provider>
     );
 }
 

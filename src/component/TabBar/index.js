@@ -1,6 +1,6 @@
 import React from 'react';
 import { TabBar} from 'antd-mobile';
-import { connect } from 'dva';
+import { connect } from 'react-redux';
 import 'antd-mobile/dist/antd-mobile.css';
 import LifeView from '../Life';
 import Second from '../Second'
@@ -12,22 +12,18 @@ import add1 from '../../img/add1.png';
 import mine from '../../img/mine.png';
 import mine1 from '../../img/mine1.png';
 import vip from '../../img/vip.png';
+import { saveFormData, changeSelect, clearData } from './model.js';
+import PropTypes from 'prop-types'
 class TaBarView extends React.Component {
     constructor(props) {
         super(props);
        //console.log(props)
-        this.state = {
-            selectedTab: 'blueTab',
-            hidden: false,
-            isPrivilege:true,
-            attributeState:4
-        };
-    }
-    UNSAFE_componentWillMount() {
-        const { taBarView, dispatch } = this.props;
-        dispatch({
-            type: 'taBarView/changeHidden'
-        });
+      //   this.state = {
+      //       selectedTab: 'blueTab',
+      //       hidden: false,
+      //       isPrivilege:true,
+      //       attributeState:4
+      //   };
     }
 
     renderContent(pageText) {
@@ -54,14 +50,14 @@ class TaBarView extends React.Component {
                     </a>
                 </div>
                 <ul className="other-info">
-                    <li className="clearfix" style={{display:this.state.isPrivilege?"":"none"}}>
+                    <li className="clearfix" style={{display:this.props.isPrivilege?"":"none"}}>
                         <a href="./superEtrance.html" className="clearfix">
                             <div className="f_left">先否未奏</div>
                             <div className="f_left vip"><img src={vip}/></div>
                             <div className="other-val f_right"><i className='iconfont icon-right'></i></div>
                         </a>
                     </li>
-                    <li className="clearfix" style={{display:this.state.isPrivilege?"":"none"}}>
+                    <li className="clearfix" style={{display:this.props.isPrivilege?"":"none"}}>
                         <a href="./superPrivilege.html" className="clearfix">
                             <div className="f_left">已妥却否</div>
                             <div className="f_left vip"><img src={vip}/></div>
@@ -74,7 +70,7 @@ class TaBarView extends React.Component {
                             <div className="other-val f_right"><i className='iconfont icon-right'></i></div>
                         </a>
                     </li>
-                    <li className="clearfix" style={{display:this.state.attributeState === 4 ? "" : "none"}}>
+                    <li className="clearfix" style={{display:this.props.attributeState === 4 ? "" : "none"}}>
                         <a href="./verify.html" className="clearfix">
                             <div className="f_left">考勤助手</div>
                             <div className="other-val f_right"><i className='iconfont icon-right'></i></div>
@@ -120,9 +116,17 @@ class TaBarView extends React.Component {
             </div>
         );
     }
+    handClick(value){
+       // this.props.data.changeSelect(value,'CHANGESELWCT')
+        console.log(value)
+    }
+    componentWillMount(){
+        //this.initData(this.props);
+        console.log(this.props);
+    }
 
     render() {
-        const { taBarView, dispatch, history } = this.props;
+        const {handClick}=this.props;
         return (
             <div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
                 <TabBar
@@ -130,7 +134,7 @@ class TaBarView extends React.Component {
                     tintColor="#33A3F4"
                     barTintColor="white"
                     tabBarPosition="bottom"
-                    hidden={this.state.hidden}
+                    hidden={this.props.hidden}
                     prerenderingSiblingsNumber={0}
                 >
                     <TabBar.Item
@@ -148,12 +152,8 @@ class TaBarView extends React.Component {
                             background: `url(${home}) center center /  21px 21px no-repeat` }}
                         />
                         }
-                        selected={this.state.selectedTab === 'blueTab'}
-                        onPress={() => {
-                            this.setState({
-                                selectedTab: 'blueTab',
-                            });
-                        }}
+                        selected={this.props.data.selectedTab === 'blueTab'}
+                        onPress={handClick('blueTab')}
                         data-seed="logId"
                     >
                         <LifeView />
@@ -175,12 +175,8 @@ class TaBarView extends React.Component {
                         }
                         title="新建"
                         key="Koubei"
-                        selected={this.state.selectedTab === 'redTab'}
-                        onPress={() => {
-                            this.setState({
-                                selectedTab: 'redTab',
-                            });
-                        }}
+                        selected={this.props.data.selectedTab === 'redTab'}
+                        onPress={handClick('redTab')}
                         data-seed="logId1"
                     >
                         <Second data={this.props}/>
@@ -203,32 +199,25 @@ class TaBarView extends React.Component {
                         title="我的"
                         key="Friend"
                         dot={false}
-                        selected={this.state.selectedTab === 'greenTab'}
-                        onPress={() => {
-                            this.setState({
-                                selectedTab: 'greenTab',
-                            });
-                        }}
+                        selected={this.props.data.selectedTab === 'greenTab'}
+                        onPress={handClick('greenTab')}
                     >
                         {this.renderContent('Friend')}
                     </TabBar.Item>
-                    {/*<TabBar.Item*/}
-                        {/*icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg' }}*/}
-                        {/*selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}*/}
-                        {/*title="我的"*/}
-                        {/*key="my"*/}
-                        {/*selected={this.state.selectedTab === 'yellowTab'}*/}
-                        {/*onPress={() => {*/}
-                            {/*this.setState({*/}
-                                {/*selectedTab: 'yellowTab',*/}
-                            {/*});*/}
-                        {/*}}*/}
-                    {/*>*/}
-                        {/*<My />*/}
-                    {/*</TabBar.Item>*/}
+
                 </TabBar>
             </div>
         );
     }
 }
-export  default connect(({TaBarView}) => ({TaBarView}))(TaBarView) ;
+TaBarView.propTypes={
+          data: PropTypes.object.isRequired
+};
+const mapStateToProps = (state, ownProps) => ({
+    selectedTab: changeSelect(state.selectedTab);
+})
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    handClick: (value) => dispatch(changeSelect(value))
+})
+export  default connect(state => ({data: state.data}),mapDispatchToProps
+)(TaBarView) ;
