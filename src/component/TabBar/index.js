@@ -1,6 +1,7 @@
 import React from 'react';
 import { TabBar} from 'antd-mobile';
-import { connect } from 'react-redux';
+import { connect } from 'dva';
+import { withRouter } from 'react-router-dom'
 import 'antd-mobile/dist/antd-mobile.css';
 import LifeView from '../Life';
 import Second from '../Second'
@@ -17,15 +18,7 @@ import PropTypes from 'prop-types'
 class TaBarView extends React.Component {
     constructor(props) {
         super(props);
-       //console.log(props)
-      //   this.state = {
-      //       selectedTab: 'blueTab',
-      //       hidden: false,
-      //       isPrivilege:true,
-      //       attributeState:4
-      //   };
     }
-
     renderContent(pageText) {
         return (
             <div style={{ backgroundColor: 'white', height: '100%', textAlign: 'center' }}>
@@ -117,16 +110,12 @@ class TaBarView extends React.Component {
         );
     }
     handClick(value){
-       // this.props.data.changeSelect(value,'CHANGESELWCT')
+        //this.props.handClick(value,'CHANGESELWCT')
         console.log(value)
-    }
-    componentWillMount(){
-        //this.initData(this.props);
-        console.log(this.props);
     }
 
     render() {
-        const {handClick}=this.props;
+        const {dispatch}=this.props;
         return (
             <div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
                 <TabBar
@@ -152,8 +141,10 @@ class TaBarView extends React.Component {
                             background: `url(${home}) center center /  21px 21px no-repeat` }}
                         />
                         }
-                        selected={this.props.data.selectedTab === 'blueTab'}
-                        onPress={handClick('blueTab')}
+                        selected={this.props.selectedTab === 'blueTab'}
+                        onPress={()=>{
+                            dispatch({type:'tabbar/initList',payload:'blueTab'});
+                        }}
                         data-seed="logId"
                     >
                         <LifeView />
@@ -175,8 +166,10 @@ class TaBarView extends React.Component {
                         }
                         title="新建"
                         key="Koubei"
-                        selected={this.props.data.selectedTab === 'redTab'}
-                        onPress={handClick('redTab')}
+                        selected={this.props.selectedTab === 'redTab'}
+                        onPress={()=>{
+                                dispatch({type:'tabbar/initList',payload:'redTab'});
+                        }}
                         data-seed="logId1"
                     >
                         <Second data={this.props}/>
@@ -199,8 +192,10 @@ class TaBarView extends React.Component {
                         title="我的"
                         key="Friend"
                         dot={false}
-                        selected={this.props.data.selectedTab === 'greenTab'}
-                        onPress={handClick('greenTab')}
+                        selected={this.props.selectedTab === 'greenTab'}
+                        onPress={()=>{
+                            dispatch({type:'tabbar/initList',payload:'greenTab'});
+                        }}
                     >
                         {this.renderContent('Friend')}
                     </TabBar.Item>
@@ -211,13 +206,8 @@ class TaBarView extends React.Component {
     }
 }
 TaBarView.propTypes={
-          data: PropTypes.object.isRequired
 };
-const mapStateToProps = (state, ownProps) => ({
-    selectedTab: changeSelect(state.selectedTab);
-})
-const mapDispatchToProps = (dispatch, ownProps) => ({
-    handClick: (value) => dispatch(changeSelect(value))
-})
-export  default connect(state => ({data: state.data}),mapDispatchToProps
-)(TaBarView) ;
+const mapStateToProps = (state) =>{
+    return state.tabbar
+}
+export  default connect(mapStateToProps)(TaBarView)  ;

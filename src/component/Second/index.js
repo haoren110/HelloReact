@@ -2,6 +2,7 @@ import React from 'react';
 import ColumItem from '../ColumnItem';
 import ColumnItemTwo from '../ColumnItemTwo';
 import './index.css';
+import {connect} from "dva";
 import 'antd-mobile/dist/antd-mobile.css';
 import bannerImage from  '../../img/ban.jpg';
 import mine3 from '../../img/ordHistory.png';
@@ -70,5 +71,9 @@ class Second extends  React.Component{
     }
 
 }
+const mapStateToProps = (state) =>{
+    console.log(state)
+    return {data:state.data}
+}
 
-export  default Second;
+export  default connect(mapStateToProps)(Second);
