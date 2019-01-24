@@ -1,0 +1,180 @@
+.explain {
+    color: #ff5252;
+    padding: 0.6rem;
+    background-color: #eff4fa;
+    line-height: 1rem;
+    font-size: 0.65rem;
+}
+.affix-brife {
+    color: #ff5252;
+    padding: 0.6rem 0;
+    background-color: #fff;
+    line-height: 1rem;
+    font-size: 0.65rem;
+    display: none;
+}
+.egress-box {
+    padding: 0 0.6rem;
+    background-color: #fff;
+}
+.dask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: none;
+}
+.dask.active {
+    display: block;
+}
+.info-box {
+    background-color: #fff;
+    padding: 0 0.6rem;
+}
+.info-box > li {
+    min-height: 3rem;
+}
+.info-box > li .time-area-box {
+    position: relative;
+    z-index: 9;
+}
+.info-box > li .time-area-box::after {
+    content: '';
+    position: absolute;
+    border-bottom: 10px solid #d0d0d0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    top: 0.75rem;
+    right: 0.4rem;
+}
+.info-box > li .time-area-box.active::after {
+    border-top: 10px solid #d0d0d0;
+    border-bottom: 0;
+}
+.info-box > li .time-area-box input {
+    width: 100%;
+    padding: 0 0.5rem;
+    height: 2rem;
+    border: 1px solid #f0f0f0;
+    border-radius: 0.3rem;
+}
+.info-box > li .time-area-box .time-area {
+    display: none;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border-radius: 0 0 0.3rem 0.3rem;
+    border-style: solid;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 0;
+    border-color: #f0f0f0;
+    position: absolute;
+    top: 1.7rem;
+    left: 0;
+    z-index: 9;
+    background-color: #fff;
+}
+.info-box > li .time-area-box .time-area.active {
+    display: block;
+}
+.info-box > li .time-area-box .time-area li {
+    line-height: 2rem;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+}
+.info-box > li .time-area-box .time-area li.active::after {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: #4AB1E9;
+    border-radius: 50%;
+    position: absolute;
+    right: 0.3rem;
+    top: 0.75rem;
+}
+.info-box > li .time-area-box .time-area li:last-child {
+    border-bottom: 0;
+}
+.info-box > li label.required {
+    position: relative;
+    padding-left: 0.5rem;
+}
+.info-box > li label.required::after {
+    content: '*';
+    color: red;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.info-box > li.control {
+    border-bottom: 1px solid #f0f0f0;
+}
+.info-box > li.control input {
+    height: 2rem;
+    padding-right: 0.5rem;
+    text-align: right;
+}
+.info-box > li.areabox {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.info-box > li textarea {
+    padding: 0.3rem;
+    margin: 0.5rem 0;
+    height: 4rem;
+    overflow-x: visible;
+    overflow-y: visible;
+}
+.time-box {
+    margin: 0.3rem 0;
+}
+/*
+ * 加班
+*/
+.overtime-item {
+    position: relative;
+    padding-top: 1rem;
+}
+.add-time-quantum {
+    background-color: #fff;
+    padding: 0.5rem 0.6rem;
+    margin-bottom: 0.3rem;
+    font-size: 0.7rem;
+    color: #2690ff;
+}
+.del-time {
+    position: absolute;
+    font-size: 0.7rem;
+    color: #2690ff;
+    top: 0.2rem;
+    right: 0.6rem;
+}
+/*
+ * 请假
+*/
+.semihTotal {
+    padding: 0 1.1rem 0 0.6rem;
+    background: #fff;
+}
+.semihTotal li {
+    height: 3rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+.semihTotal li label.required {
+    padding-left: 0.5rem;
+    position: relative;
+}
+.semihTotal li label.required::after {
+    content: "*";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: red;
+}
+.semihTotal li input {
+    width: 2rem;
+    height: 2rem;
+}
