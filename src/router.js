@@ -52,13 +52,11 @@ const routes = [{
 function RouterConfig({history}) {
     return (
         <Router history={history}>
-
             <Switch>
                 {routes.map((route, i) => {
                     return <Route exact={true} key={i} path={route.path} component={route.component}/>
                 })}
             </Switch>
-
         </Router>
 
     );

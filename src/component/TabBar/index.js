@@ -13,13 +13,25 @@ import add1 from '../../img/add1.png';
 import mine from '../../img/mine.png';
 import mine1 from '../../img/mine1.png';
 import vip from '../../img/vip.png';
+import sex0 from '../../img/sex0.png';
+import sex1 from '../../img/sex1.png';
+import sex2 from '../../img/sex2.png';
+import axios from '../../utils/axios'
 import { saveFormData, changeSelect, clearData } from './model.js';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 class TaBarView extends React.Component {
-    constructor(props) {
-        super(props);
+    componentWillMount() {
+        const {dispatch}=this.props;
+        dispatch({type:'tabbar/loadData'});
     }
+
     renderContent(pageText) {
+        let sexImg=sex0;
+        if(this.props.sex==1){
+            sexImg=sex1
+        }else if(this.props.sex==2){
+            sexImg=sex2
+        }
         return (
             <div style={{ backgroundColor: 'white', height: '100%', textAlign: 'center' }}>
                 {/*<div style={{ paddingTop: 60 }}>Clicked “{pageText}” tab， show “{pageText}” information</div>*/}
@@ -35,10 +47,10 @@ class TaBarView extends React.Component {
                 {/*</a>*/}
                 <div className="avator-box">
                     <a href="">
-                        <div className="avator f_left"><img src={mine} alt=""/></div>
+                        <div className="avator f_left"><img src={this.props.obj.head} alt=""/></div>
                         <ul className="avator-name f_left">
-                            <li style={{color:'#000'}}>张三<span className="sex"><img src={mine} alt="" /></span></li>
-                            <li style={{color:'#868686'}}>微信昵称</li>
+                            <li style={{color:'#000'}}>{this.props.obj.name}<span className="sex"><img src={sexImg} alt="" /></span></li>
+                            <li style={{color:'#868686'}}>微信昵称:{this.props.obj.wxname}</li>
                         </ul>
                     </a>
                 </div>
@@ -207,7 +219,8 @@ class TaBarView extends React.Component {
 }
 TaBarView.propTypes={
 };
-const mapStateToProps = (state) =>{
-    return state.tabbar
+const mapStateToProps = ({tabbar}) =>{
+    console.log(tabbar)
+    return tabbar
 }
 export  default connect(mapStateToProps)(TaBarView)  ;
