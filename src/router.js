@@ -1,41 +1,61 @@
 import React from 'react';
-import { Router, Route, Switch} from 'dva/router';
+import {Router, Route, Switch} from 'dva/router';
 import TabBar from '../src/component/TabBar';
 import Signature from '../src/component/Signature';
 import Travel from '../src/component/Travel';
-import {Provider} from 'react-redux';
-const routes=[{
-    path:'/',
-    component:TabBar
-},{
-    path:'/signature',
-    component:Signature
+import Leave from '../src/component/Leave';
+import Overtime from '../src/component/Overtime';
+
+import Egress from '../src/component/Egress';
+const routes = [{
+    path: '/',
+    component: TabBar
+}, {
+    path: '/signature',
+    component: Signature
 },
     {
-        path:'/travel',
-        component:Travel
+        path: '/travel',
+        component: Travel
     }
+    ,
+    {
+        path: '/leave',
+        component: Leave
+    }
+    ,
+    {
+        path: '/overtime',
+        component: Overtime
+    }
+    ,
+    {
+        path: '/egress',
+        component: Egress
+    }
+
 ];
+
 /**
  *    <Provider store={store}>
-<Router history={history}>
+ <Router history={history}>
 
-    <Switch>
-        {routes.map((route,i)=>{
+ <Switch>
+ {routes.map((route,i)=>{
             return <Route exact={true} key={i}  path={route.path} component={route.component} />
         })}
-    </Switch>
+ </Switch>
 
-</Router>
-// </Provider>
+ </Router>
+ // </Provider>
  * */
-function RouterConfig({ history }) {
+function RouterConfig({history}) {
     return (
         <Router history={history}>
 
             <Switch>
-                {routes.map((route,i)=>{
-                    return <Route exact={true} key={i}  path={route.path} component={route.component} />
+                {routes.map((route, i) => {
+                    return <Route exact={true} key={i} path={route.path} component={route.component}/>
                 })}
             </Switch>
 

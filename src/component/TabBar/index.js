@@ -3,8 +3,8 @@ import { TabBar} from 'antd-mobile';
 import { connect } from 'dva';
 import { withRouter } from 'react-router-dom'
 import 'antd-mobile/dist/antd-mobile.css';
-import LifeView from '../Life';
-import Second from '../Second'
+import IndexView from '../IndexView';
+import AddView from '../AddView'
 import './index.css';
 import home1 from '../../img/home1.png';
 import home from '../../img/home.png';
@@ -147,7 +147,7 @@ class TaBarView extends React.Component {
                         }}
                         data-seed="logId"
                     >
-                        <LifeView />
+                        <IndexView />
                     </TabBar.Item>
                     <TabBar.Item
                         icon={
@@ -172,7 +172,7 @@ class TaBarView extends React.Component {
                         }}
                         data-seed="logId1"
                     >
-                        <Second data={this.props}/>
+                        <AddView data={this.props}/>
                     </TabBar.Item>
                     <TabBar.Item
                         icon={

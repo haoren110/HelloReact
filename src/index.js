@@ -9,7 +9,7 @@ const app = dva();
 // app.use({});
 
 // // 3. Model
- app.model(require('../src/component/Second/model').default);
+ app.model(require('../src/component/AddView/model').default);
   app.model(require('../src/component/TabBar/model').default);
 
 // 4. Router
