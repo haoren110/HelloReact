@@ -25,8 +25,6 @@ class TaBarView extends React.Component {
         const {dispatch}=this.props;
         dispatch({type:'tabbar/loadData'});
     }
-
-
     handClick(value){
         //this.props.handClick(value,'CHANGESELWCT')
         console.log(value)
@@ -125,8 +123,8 @@ class TaBarView extends React.Component {
 }
 TaBarView.propTypes={
 };
-const mapStateToProps = ({tabbar}) =>{
-    console.log(tabbar)
-    return tabbar
+const mapStateToProps = (state) =>{
+    console.log(state)
+    return state.tabbar
 }
 export  default connect(mapStateToProps)(TaBarView)  ;

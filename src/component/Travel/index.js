@@ -1,11 +1,13 @@
 import React from 'react';
 import './index.css';
+import axios from "../../utils/axios";
 import history from '../../img/history.png';
 import   clearNoNum from '../../utils/help';
 import { DatePicker, List,Modal } from 'antd-mobile';
 // import help from '../../img/help.png';
 import help from '../../img/help.png';
-//const alert=Modal.alert;
+import {from} from "immutable/contrib/cursor";
+const alert=Modal.alert;
 const nowTimeStamp = Date.now();
 //const now = new Date(nowTimeStamp);
 // GMT is not currently observed in the UK. So use UTC now.
@@ -41,17 +43,17 @@ function closest(el, selector) {
     return null;
 }
 
-// function formatDate(date) {
-//     /* eslint no-confusing-arrow: 0 */
-//     console.log(date.getFullYear())
-//     const pad = n => n < 10 ? `0${n}` : n;
-//     const year=date.getFullYear();
-//     const month= pad(date.getMonth()+1);
-//     const day= pad(date.getDate());
-//     const dateStr = `${year}-${month}-${day}`;
-//    // const timeStr = `${pad(date.getHours())}:${pad(date.getMinutes())}`;
-//     return `${dateStr} `;
-// }
+function formatDateBasic(date) {
+    /* eslint no-confusing-arrow: 0 */
+    console.log(date.getFullYear())
+    const pad = n => n < 10 ? `0${n}` : n;
+    const year=date.getFullYear();
+    const month= pad(date.getMonth()+1);
+    const day= pad(date.getDate());
+    const dateStr = `${year}-${month}-${day}`;
+   // const timeStr = `${pad(date.getHours())}:${pad(date.getMinutes())}`;
+    return `${dateStr}`;
+}
 class Travel extends  React.Component{
     constructor(props){
         super(props);
@@ -80,7 +82,34 @@ class Travel extends  React.Component{
         //  this.fileTypeClick=this.fileTypeClick.bind(this);
     }
     handleSubmit(event){
-        console.log( this.state);
+        const {fileType,objective,planTrip,trafficTypeArray,trafficExp,housExp,mealExp,otherExp,dateStart,dateEnd}=this.state;
+        let vehicle="";
+        trafficTypeArray.forEach((val,i)=>{
+            if(val.choose){
+                vehicle+=val.value
+            }
+        });
+        const dateStart1=formatDateBasic(dateStart);
+        const dateEnd1=formatDateBasic(dateEnd);
+        //floatTool.add(floatTool.add(trafficExp,housExp),floatTool.add(mealExp,otherExp))
+        let sum=trafficExp+housExp+mealExp+otherExp;
+        let data = {
+            fileLevel:fileType,
+            objective:objective, // 目的简述
+            planTrip:planTrip, // 预计行程
+            planStartDate:dateStart1, // 出发时间
+            planEndDate:dateEnd1, // 返回时间
+            vehicle:vehicle, // 交通工具
+            planTrafficExpense:trafficExp, // 预计交通费用
+            planHousingExpense:housExp, // 预计住宿费用
+            planTrafficMealExpense:mealExp, // 预计交食补费用
+            planOtherExpense:otherExp, // 预计其他费用
+            planTogetherExpense:sum,
+            addCustomerId:'AC63A0DD00B54A12AD1FF9527CFFB98D',
+            departmentCode:1004010,
+        };
+        console.log(data)
+
         event.preventDefault();
     }
     planTripChange(event) {
@@ -186,7 +215,8 @@ class Travel extends  React.Component{
                                  title="出发时间"
                                  extra=""
                                  value={this.state.dateStart}
-                                 onChange={date => this.setState({dateStart:date})}
+                                 onChange={date => {
+                                     this.setState({dateStart:date})}}
                              >
                                  <List.Item arrow="horizontal">出发时间</List.Item>
                              </DatePicker>
@@ -204,13 +234,13 @@ class Travel extends  React.Component{
                          </ul>
 
                          <ul className="apply">
-                             <li><span>预计交通费</span><input type="text" className="trafficExp text_right" placeholder="请输入预计交通费"
+                             <li><span>预计交通费</span><input type="number" className="trafficExp text_right" placeholder="请输入预计交通费"
                                                           onChange={this.trafficExpChange} value={this.state.trafficExp} />元</li>
-                             <li><span>预计住宿费</span><input type="text" className="housExp text_right" placeholder="请输入预计住宿费"
+                             <li><span>预计住宿费</span><input type="number" className="housExp text_right" placeholder="请输入预计住宿费"
                                                           onChange={this.housExpChange} value={this.state.housExp} />元</li>
-                             <li><span>预计交食补</span><input type="text" className="mealExp text_right" placeholder="请输入预计交食补"
+                             <li><span>预计交食补</span><input type="number" className="mealExp text_right" placeholder="请输入预计交食补"
                                                           onChange={this.mealExpChange} value={this.state.mealExp} />元</li>
-                             <li><span>预 计 其 他 </span><input type="text" className="otherExp text_right" placeholder="请输入预计其他费用"
+                             <li><span>预 计 其 他 </span><input type="number" className="otherExp text_right" placeholder="请输入预计其他费用"
                                                              onChange={this.otherExpChange} value={this.state.otherExp} />元</li>
                          </ul>
                          <ul className="apply">
