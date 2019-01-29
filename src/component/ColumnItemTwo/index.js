@@ -1,5 +1,5 @@
 import React from 'react';
-const baseurl="https://weixin.buchang.com/ZbtOfficial/";
+//const baseurl="https://weixin.buchang.com/ZbtOfficial/";
 class ColumItemTwo extends  React.Component{
     render() {
           //let url=baseurl+this.props.data.iconUrl;

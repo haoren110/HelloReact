@@ -306,7 +306,6 @@
     position: absolute;
     left: 0;
     top: 1.8rem;
-    display: none;
     z-index: 1;
 }
 .dropdown-list li {

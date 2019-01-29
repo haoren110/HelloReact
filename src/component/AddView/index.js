@@ -43,9 +43,6 @@ function ItemTwos (props) {
 }
 
 class AddView extends  React.Component{
-    constructor(props){
-        super(props);
-    }
     render() {
         return (<div className="container">
             <div className="banner">

@@ -260,9 +260,9 @@
 .signature .annex label img {
     height: 100%;
 }
-ul.level {
-    padding: 0.5rem 0;
-}
+/*ul.level {*/
+    /*padding: 0.5rem 0;*/
+/*}*/
 /* 生成签呈按钮 */
 .generate {
     color: #fff;

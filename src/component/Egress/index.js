@@ -1,8 +1,8 @@
 import React from 'react';
 import './index.css';
-import history from '../../img/history.png';
+//import history from '../../img/history.png';
 // import help from '../../img/help.png';
-import help from '../../img/help.png';
+//import help from '../../img/help.png';
 class Egress extends  React.Component{
     constructor(props){
         super(props);

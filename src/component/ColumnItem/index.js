@@ -4,18 +4,11 @@ import CSSModules from 'react-css-modules';
 import styles from './index.css';
 import {Link} from 'dva/router';
 class ColumItem extends  React.Component{
-    constructor(props){
-        super(props);
-    }
-    componentDidMount() {
-       // console.log(this.props)
-    }
-
     render() {
 
       //const com= this.props.data.url.substring(0,1).toLocaleUpperCase()+this.props.data.url.substring(1,this.props.data.url.length-1)
        // console.log(this.props.data.url)
-        if(this.props.data.num==false){
+        if(this.props.data.num===false){
             return (<li className="f_left">
                 <Link to={this.props.data.url}>
                 <div className="aplicon"><img src={this.props.data.icon} alt="" />

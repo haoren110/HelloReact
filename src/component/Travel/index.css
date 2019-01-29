@@ -53,10 +53,9 @@
 .level {
     height: 2rem;
     line-height: 1rem;
-    padding: 0.5rem;
+    padding: .5rem;
     background: #fff;
-    margin-top: 0.3rem;
-    font-size: 0.8rem;
+    margin-top: .3rem;
 }
 .level li {
     margin-right: 1rem;
@@ -306,7 +305,6 @@
     position: absolute;
     left: 0;
     top: 1.8rem;
-    display: none;
     z-index: 1;
 }
 .dropdown-list li {
@@ -538,4 +536,66 @@
     color: #ff5252;
     line-height: 1rem;
     font-size: .65rem;
+}
+.inputBtn{
+    border: 0;
+    margin: 20px 0 0 5% !important;
+}
+.am-list-item {
+    position: relative;
+    display: flex;
+    padding: 0.5rem;
+    min-height: 44px;
+    background-color: #fff;
+    vertical-align: middle;
+    overflow: hidden;
+    -webkit-transition: background-color 200ms;
+    transition: background-color 200ms;
+    align-items: center;
+}
+.am-list-item .am-list-line .am-list-content {
+    flex: 1 1;
+    color: #000;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    text-align: left;
+    width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+.am-list-item .am-list-line .am-list-extra {
+    flex-basis: 36%;
+    color: #888;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    text-align: right;
+    width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+.am-list-item .am-list-line .am-list-arrow {
+    display: block;
+    width: 0.8rem;
+    height: 0.8rem;
+    margin-left: 8px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+.am-list-item .am-list-line {
+    position: relative;
+    display: flex;
+    flex: 1 1;
+    align-self: stretch;
+    padding-right: 0px;
+    overflow: hidden;
+}
+.am-modal-transparent{
+    min-width: 300px;
 }
