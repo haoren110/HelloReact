@@ -54,14 +54,11 @@ function closest(el, selector) {
 }
 
 function formatDateBasic(date) {
-    /* eslint no-confusing-arrow: 0 */
-   // console.log(date.getFullYear())
     const pad = n => n < 10 ? `0${n}` : n;
     const year=date.getFullYear();
     const month= pad(date.getMonth()+1);
     const day= pad(date.getDate());
     const dateStr = `${year}-${month}-${day}`;
-   // const timeStr = `${pad(date.getHours())}:${pad(date.getMinutes())}`;
     return `${dateStr}`;
 }
 class Travel extends  React.Component{
