@@ -2,19 +2,55 @@ import React from 'react';
 import './index.css';
 //import history from '../../img/history.png';
 // import help from '../../img/help.png';
-//import help from '../../img/help.png';
-class Travel extends  React.Component{
+import history from '../../img/history.png';
+import Filelevel from '../../component/FileLevel'
+class Leave extends  React.Component{
     constructor(props){
         super(props);
-        console.log(props)
+        this.state={
+            fileType:1,
+            leaveChooseList:true,
+            leaveListJson:[
+                {value:'事假',choosed:true,detail:''},
+                {value:'换休',choosed:false,detail:''},
+                {value:'病假',choosed:false,detail:'请提供市级（三甲）以上医院的病假证明、诊断书、交费凭证、病历等相关资料复印件, 若未能提交书面材料的按旷工计算'},
+                {value:'婚假',choosed:false,detail:'请提供结婚证、婚前检查资料复印件（验原件）,若未能提交书面材料的按事假计算'},
+                {value:'丧假',choosed:false,detail:'请在“请假事由”栏说明去世人与申请人的关系，若直系亲属（指父母、配偶、子女与配偶之父母），可申请3天丧假；若旁系亲属（指祖父母、兄弟姐妹与配偶之祖父母、兄弟姐妹），可申请休2天丧假'},
+                {value:'产假',choosed:false,detail:'请提供孕前检查资料、孩子出生证明等相关复印件（验原件）；若遇难产、多胞胎情况时还需提供相关证明资料复印件（验原件）,若未能提交书面材料的按事假计算'},
+                {value:'哺乳假',choosed:false,detail:'请提供孕前检查资料、孩子出生证明等相关复印件（验原件）；若遇难产、多胞胎情况时还需提供相关证明资料复印件（验原件）,若未能提交书面材料的按事假计算'},
+                {value:'陪产假',choosed:false,detail:'请提供孕前检查资料、孩子出生证明等相关复印件（验原件）；若遇难产、多胞胎情况时还需提供相关证明资料复印件（验原件）,若未能提交书面材料的按事假计算'}
+                ]
+        }
     }
+    fileTypeClick=(value)=>{
+        console.log(value)
+        this.setState({fileType:value})
+    }
+    dropdownRadio=(e)=>{
+this.setState({leaveChooseList:!this.state.leaveChooseList})
+}
+    selectRadio=(num)=>{
+      let array= this.state.leaveListJson;
+      array.forEach((value, index)=>{
+          value.choosed=false;
+          if(num==index){
+              value.choosed=true;
+          }
+      });
+      this.setState({leaveListJson:array,leaveChooseList:true});
+    }
+
          render() {
+
+            const lists= this.state.leaveListJson.map(((value, index) => {
+                     return (<li onClick={()=>this.selectRadio(index)}  key={index} className={`${value.choosed?'active':''}`}>{value.value}</li>);
+             }));
              return (
                  <div className="container">
                      <div className="dask"></div>
                       {/*签呈标签 */}
                      <h4 className="times">请假申请 <a href="./attendanceRecord.html?checktype=10" className="f_right"><img
-                         src="./img/history.png" alt="" /></a></h4>
+                         src={history} alt="" /></a></h4>
 
                      {/*说明 */}
                      <div className="explain">
@@ -23,33 +59,8 @@ class Travel extends  React.Component{
                          3、请假人须做好交接工作，如有差错，各部门领导负连带责任
                      </div>
                      <div className="egress-box">
-                          {/*文级 */}
-                         <ul className="level clearfix">
-                             <li className="f_left">文级：</li>
-                             <li className="active f_left">
-                                 <input type="radio" className="hidden" name="grade" value="1" data-level='正常'
-                                        id="normal" defaultChecked={true}/>
-                                 <label htmlFor="normal">
-                                     <span className="iconfont icon-squarecheck"></span>正常</label>
-                             </li>
-                             <li className="f_left">
-                                 <input type="radio" className="hidden" name="grade" value="2" data-level='紧急'
-                                        id="urgent"/>
-                                 <label htmlFor="urgent">
-                                     <span className="iconfont icon-square"></span>紧急</label>
-                             </li>
-                             <li className="f_left">
-                                 <input type="radio" className="hidden" name="grade" value="3" data-level='特急'
-                                        id="extra"/>
-                                 <label htmlFor="extra">
-                                     <span className="iconfont icon-square"></span>特急</label>
-                             </li>
-                             <li className="f_left">
-                    <span className="help">
-                        <img src="./img/help.png" alt="" />
-                    </span>
-                             </li>
-                         </ul>
+                         {/*文级*/}
+                         <Filelevel fileType={this.state.fileType} chooseFileType={this.fileTypeClick} />
                      </div>
                      <form className="egress-info">
                         {/*外出时间 */}
@@ -58,18 +69,10 @@ class Travel extends  React.Component{
                                  <label className="required" htmlFor="">请假类型：</label>
                                  <div className="time-area-box flex-1">
                                      <input type="text" name="leveltype" placeholder="请选择" readOnly unselectable="on"
-                                            onClick="dropdownRadio(this)" />
-                                         <ol className="time-area">
-                                             <li onClick='selectRadio(this)' data-index='0' data-val='事假'
-                                                 className="">事假
-                                             </li>
-                                             <li onClick='selectRadio(this)' data-index='1' data-val='换休'>换休</li>
-                                             <li onClick='selectRadio(this)' data-index='2' data-val='病假'>病假</li>
-                                             <li onClick='selectRadio(this)' data-index='3' data-val='婚假'>婚假</li>
-                                             <li onClick='selectRadio(this)' data-index='4' data-val='丧假'>丧假</li>
-                                             <li onClick='selectRadio(this)' data-index='5' data-val='产假'>产假</li>
-                                             <li onClick='selectRadio(this)' data-index='6' data-val='哺乳假'>哺乳假</li>
-                                             <li onClick='selectRadio(this)' data-index='7' data-val='陪产假'>陪产假</li>
+                                                onClick={ (e)=>this.dropdownRadio(e)} value={this.state.leaveListJson.filter((value)=>{return value.choosed===true})[0].value} />
+                                         <ol className={`time-area ${this.state.leaveChooseList?'':'active'}`}>
+                                             {/*假期列表*/}
+                                             {lists}
                                          </ol>
                                  </div>
                              </li>
@@ -129,7 +132,7 @@ class Travel extends  React.Component{
                          <div className="egress-box">
                               {/*附件*/}
                              <div className="img-view">
-                                 <p className="affix-brife"></p>
+                                 <p className="affix-brife">{this.state.leaveListJson.filter((value)=>{return value.choosed===true})[0].detail}</p>
                                  <h4>
                                      <label htmlFor="file">
                                          <span>附件</span>
@@ -148,7 +151,5 @@ class Travel extends  React.Component{
                      </form>
                  </div>)
     }
-
-
 };
-export default Travel;
+export default Leave;

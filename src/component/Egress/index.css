@@ -1,8 +1,4 @@
-.container {
-    max-width: 640px;
-    min-width: 320px;
-    margin: 0 auto;
-}
+
 /* 按钮 */
 .btn {
     width: 90%;
@@ -200,9 +196,6 @@
 .notes h4.num a img {
     width: 100%;
     height: 100%;
-}
-.container {
-    padding-top: 0.5rem;
 }
 ::-webkit-input-placeholder {
     color: #ececec;
@@ -529,12 +522,4 @@
 }
 .time-box {
     margin: 0.3rem 0;
-}
-.affix-brife{
-    padding: .3rem 0;
-    background-color: #fff;
-    display: none;
-    color: #ff5252;
-    line-height: 1rem;
-    font-size: .65rem;
 }

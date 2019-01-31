@@ -4,10 +4,17 @@ import './index.css';
 import help from '../../img/help.png';
 import affix from '../../img/affix.png'
 import save from '../../img/save.png'
+import Filelevel from '../../component/FileLevel'
 class Signature extends  React.Component{
     constructor(props){
         super(props);
-console.log(props)
+        this.state={
+            fileType:1
+        }
+    }
+    fileTypeClick=(value)=>{
+        console.log(value)
+        this.setState({fileType:value})
     }
     render() {
         return (<div className="container" style={{maxHeight:'640px',minWidth:'320px',margin:'0 auto',}}>
@@ -31,24 +38,7 @@ console.log(props)
                     <p className='hidden'>标题不能超过50个字</p>
                 </div>
                  {/*文级*/}
-                <ul className="level clearfix">
-                    <li className="f_left">文级：</li>
-                    <li className="active f_left">
-                        <input type="radio" className="hidden" name="grade" value="1" data-level='正常' id="normal" defaultChecked/>
-                        <label htmlFor="normal"><span className="iconfont icon-squarecheck"></span>正常</label>
-                    </li>
-                    <li className="f_left">
-                        <input type="radio" className="hidden" name="grade" value="2" data-level='紧急' id="urgent"/>
-                        <label htmlFor="urgent"><span className="iconfont icon-square"></span>紧急</label>
-                    </li>
-                    <li className="f_left">
-                        <input type="radio" className="hidden" name="grade" value="3" data-level='特急' id="extra"/>
-                        <label htmlFor="extra"><span className="iconfont icon-square"></span>特急</label>
-                    </li>
-                    <li className="f_left">
-                        <span className="help"><img src={help} alt="" /></span>
-                    </li>
-                </ul>
+                <Filelevel fileType={this.state.fileType} chooseFileType={this.fileTypeClick} />
 
                  {/*理由及建议*/}
                 <div className="reason">

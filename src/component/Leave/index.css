@@ -11,7 +11,7 @@
     background-color: #fff;
     line-height: 1rem;
     font-size: 0.65rem;
-    display: none;
+    display: block;
 }
 .egress-box {
     padding: 0 0.6rem;

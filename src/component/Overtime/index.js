@@ -3,10 +3,17 @@ import './index.css';
 //import history from '../../img/history.png';
 // import help from '../../img/help.png';
 //import help from '../../img/help.png';
+import Filelevel from '../FileLevel'
 class Overtime extends  React.Component{
     constructor(props){
         super(props);
-        console.log(props)
+        this.state={
+            fileType:1
+        }
+    }
+    fileTypeClick=(value)=>{
+        console.log(value)
+        this.setState({fileType:value})
     }
          render() {
              return (
@@ -21,33 +28,8 @@ class Overtime extends  React.Component{
                          说明：加班须事前履行加班审批手续，获准后，方可加班；加班一律按小时计算，且须按规定考勤（即打卡），无考勤记录者，不计加值班。
                      </div>
                      <div className="egress-box">
-                          {/*文级 */}
-                         <ul className="level clearfix">
-                             <li className="f_left">文级：</li>
-                             <li className="active f_left">
-                                 <input type="radio" className="hidden" name="grade" value="1" data-level='正常'
-                                        id="normal" checked/>
-                                 <label htmlFor="normal">
-                                     <span className="iconfont icon-squarecheck"></span>正常</label>
-                             </li>
-                             <li className="f_left">
-                                 <input type="radio" className="hidden" name="grade" value="2" data-level='紧急'
-                                        id="urgent"/>
-                                 <label htmlFor="urgent">
-                                     <span className="iconfont icon-square"></span>紧急</label>
-                             </li>
-                             <li className="f_left">
-                                 <input type="radio" className="hidden" name="grade" value="3" data-level='特急'
-                                        id="extra"/>
-                                 <label htmlFor="extra">
-                                     <span className="iconfont icon-square"></span>特急</label>
-                             </li>
-                             <li className="f_left">
-                    <span className="help">
-                        <img src="./img/help.png" alt="" />
-                    </span>
-                             </li>
-                         </ul>
+                         {/*文级*/}
+                         <Filelevel fileType={this.state.fileType} chooseFileType={this.fileTypeClick} />
                      </div>
                      <form className="egress-info">
                          {/*外出时间 */}
