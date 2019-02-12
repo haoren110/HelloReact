@@ -549,7 +549,6 @@
 .am-list-item .am-list-line .am-list-content {
     flex: 1 1;
     color: #000;
-    font-size: 0.9rem;
     line-height: 1.5;
     text-align: left;
     width: auto;
@@ -562,7 +561,7 @@
 .am-list-item .am-list-line .am-list-extra {
     flex-basis: 36%;
     color: #888;
-    font-size: 0.9rem;
+    /*font-size: 0.9rem;*/
     line-height: 1.5;
     text-align: right;
     width: auto;
