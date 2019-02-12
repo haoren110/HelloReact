@@ -1,4 +1,5 @@
-.explain {
+
+ .explain {
     color: #ff5252;
     padding: 0.6rem;
     background-color: #eff4fa;
@@ -178,3 +179,44 @@
     width: 2rem;
     height: 2rem;
 }
+.egress-box .img-view .preview2 li{
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.egress-box .img-view .preview2 li .del {
+    display: block;
+    font-size: 1rem;
+    color: #d60043;
+    text-align: center;
+    width: 2rem;
+    line-height: 2rem;
+}
+ .egress-box .img-view .preview2 li .affix-icon img {
+     width: 100%;
+ }
+ .egress-box .img-view .preview2 li .affix-icon {
+     display: block;
+     width: 1rem;
+     height: 1rem;
+     margin-right: .35rem;
+ }
+ .egress-box .img-view.preview2 li p {
+     -webkit-box-flex: 1;
+     -ms-flex-positive: 1;
+     flex-grow: 1;
+     max-width: 80%;
+     overflow: hidden;
+     white-space: nowrap;
+     text-overflow: ellipsis;
+ }
+ .egress-box .img-view .preview2 li p {
+     -webkit-box-flex: 1;
+     -ms-flex-positive: 1;
+     flex-grow: 1;
+     max-width: 80%;
+     overflow: hidden;
+     white-space: nowrap;
+     text-overflow: ellipsis;
+ }
