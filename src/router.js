@@ -7,30 +7,32 @@ import Leave from '../src/component/Leave';
 import Overtime from '../src/component/Overtime';
 
 import Egress from '../src/component/Egress';
-const routes = [{
-    path: '/',
-    component: TabBar
-}, {
-    path: '/signature',
-    component: Signature
-},
+
+const routes = [
     {
-        path: '/travel',
+        path: '/',//首页
+        component: TabBar
+    }, {
+        path: '/signature',//首页
+        component: Signature
+    },
+    {
+        path: '/travel',//出差
         component: Travel
     }
     ,
     {
-        path: '/leave',
+        path: '/leave',//请假
         component: Leave
     }
     ,
     {
-        path: '/overtime',
+        path: '/overtime',//加班
         component: Overtime
     }
     ,
     {
-        path: '/egress',
+        path: '/egress',//外出
         component: Egress
     }
 
