@@ -123,8 +123,11 @@ class Leave extends React.Component {
     }
     //表单提交
     handleSubmit(event) {
-        const {daytotal,hourtotal,replacement,replacemobile,reason,times,leaveListJson,files}=this.state;
+        event.preventDefault();
 
+        const {daytotal,hourtotal,replacement,replacemobile,reason,times,leaveListJson,files,fileType}=this.state;
+        let  leaveType= leaveListJson.filter((value)=>value.choosed===true)[0].value;
+        console.log(leaveType)
         if(daytotal===""||hourtotal===""||replacement===""||replacemobile===""||reason===""){
             Toast.info('有必填项为空，请填写！',3)
             return false;
