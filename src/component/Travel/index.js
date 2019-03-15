@@ -3,12 +3,14 @@ import './index.css';
 import axios from "../../utils/axios";
 import history from '../../img/history.png';
 import clearNoNum from '../../utils/help';
-import { DatePicker, List, Modal, Toast, InputItem } from 'antd-mobile';
+import {DatePicker, List, Modal, Toast, InputItem} from 'antd-mobile';
 // import help from '../../img/help.png';
 import help from '../../img/help.png';
 import arrow from '../../img/arrow.png';
 import Filelevel from '../../component/FileLevel'
-import { from } from "immutable/contrib/cursor";
+import {from} from "immutable/contrib/cursor";
+import store from "../../store";
+
 const alert = Modal.alert;
 const nowTimeStamp = Date.now();
 //const now = new Date(nowTimeStamp);
@@ -23,6 +25,7 @@ if (minDate.getDate() !== maxDate.getDate()) {
     // set the minDate to the 0 of maxDate
     minDate = new Date(maxDate.getFullYear(), maxDate.getMonth(), maxDate.getDate());
 }
+
 // 检测费用是否符合规范
 function isNum(str) {
     if (str === "" || str === "0") {
@@ -31,17 +34,7 @@ function isNum(str) {
         return Number(str);
     }
 }
-// const showAlert = () => {
-//     const alertInstance = alert('Delete', 'Are you sure???', [
-//         { text: 'Cancel', onPress: () => console.log('cancel'), style: 'default' },
-//         { text: 'OK', onPress: () => console.log('ok') },
-//     ]);
-//     setTimeout(() => {
-//         // 可以调用close方法以在外部close
-//         console.log('auto close');
-//         alertInstance.close();
-//     }, 500000);
-// };
+
 function closest(el, selector) {
     const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
     while (el) {
@@ -61,8 +54,10 @@ function formatDateBasic(date) {
     const dateStr = `${year}-${month}-${day}`;
     return `${dateStr}`;
 }
+
 class Travel extends React.Component {
     constructor(props) {
+        console.log(props)
         super(props);
         this.state = {
             maskHidden: false,
@@ -78,7 +73,10 @@ class Travel extends React.Component {
             modal1: false,
             modal2: false,
             dropDowm: true,
-            trafficTypeArray: [{ value: '飞机', choose: false }, { value: '火车', choose: false }, { value: '汽车', choose: false }, { value: '出租', choose: false }]
+            trafficTypeArray: [{value: '飞机', choose: false}, {value: '火车', choose: false}, {
+                value: '汽车',
+                choose: false
+            }, {value: '出租', choose: false}]
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.planTripChange = this.planTripChange.bind(this);
@@ -89,6 +87,7 @@ class Travel extends React.Component {
         this.objectiveChange = this.objectiveChange.bind(this);
         //  this.fileTypeClick=this.fileTypeClick.bind(this);
     }
+
     componentDidMount() {
         console.log(this)
         const _this = this;
@@ -103,19 +102,21 @@ class Travel extends React.Component {
             if (e.target === document.querySelector('.dropdown-text') || e.target.nodeName === 'LI') {
 
             } else {
-                _this.setState({ dropDowm: true })
+                _this.setState({dropDowm: true})
             }
         }, false)
 
     }
+
     closeMask = () => (e) => {
         const body = document.body;
         body.style.overflow = 'auto'
-        this.setState({ maskHidden: true })
+        this.setState({maskHidden: true})
     }
 
     handleSubmit(event) {
-        let { fileType, objective, planTrip, trafficTypeArray, trafficExp, housExp, mealExp, otherExp, dateStart, dateEnd } = this.state;
+        event.preventDefault();
+        let {fileType, objective, planTrip, trafficTypeArray, trafficExp, housExp, mealExp, otherExp, dateStart, dateEnd} = this.state;
         let vehicle = "";
         trafficTypeArray.forEach((val, i) => {
             if (val.choose) {
@@ -140,25 +141,30 @@ class Travel extends React.Component {
         } else if (objective === '') {
             Toast.info('目的简述不能为空', 2);
             return false;
-        };
+        }
+        ;
         if (!isNum(trafficExp)) {
             Toast.info('预计交通费用填写有误，请重新填写', 2);
             return false;
-        };
+        }
+        ;
         if (!isNum(housExp)) {
             Toast.info('预计住宿费用填写有误，请重新填写', 2);
 
             return false;
-        };
+        }
+        ;
         if (!isNum(mealExp)) {
             Toast.info('预计交食补费用填写有误，请重新填写', 2);
 
             return false;
-        };
+        }
+        ;
         if (!isNum(otherExp)) {
             Toast.info('预计其他费用填写有误，请重新填写', 2);
             return false;
-        };
+        }
+        ;
         if (trafficExp === "") {
             trafficExp = 0;
         }
@@ -191,49 +197,65 @@ class Travel extends React.Component {
             departmentCode: 1004010,
         };
         console.log(localStorage.getItem('filltpl'))
-        const alertInstance = alert('Delete', 'Are you sure???', [
-            { text: 'Cancel', onPress: () => console.log('cancel'), style: 'default' },
-            { text: 'OK', onPress: () => console.log('ok') },
+        const alertInstance = alert('', '请认真核对所填信息，提交后暂不支持修改功能（若管理员未审核则可撤销并重新发起）。',
+            [{text: '取消', onPress: () => console.log('cancel'), style: 'default'},
+            { text: '确定', onPress: async () => {
+                    const res = await axios.post('BusinessTripApplyController/addBusinessTrip.do', data);
+                    if (res.statusCode == 1) {
+                        this.props.history.push({pathname: '/'});
+                        return false;
+                    }
+                }
+            },
         ]);
 
-        event.preventDefault();
     }
+
     planTripChange(event) {
-        this.setState({ planTrip: event.target.value });
+        this.setState({planTrip: event.target.value});
     }
+
     trafficExpChange(event) {
-        this.setState({ trafficExp: clearNoNum(event.target) });
+        this.setState({trafficExp: clearNoNum(event.target)});
     }
+
     housExpChange(event) {
-        this.setState({ housExp: event.target.value });
+        this.setState({housExp: event.target.value});
     }
+
     mealExpChange(event) {
-        this.setState({ mealExp: event.target.value });
+        this.setState({mealExp: event.target.value});
     }
+
     otherExpChange(event) {
-        this.setState({ otherExp: event.target.value });
+        this.setState({otherExp: event.target.value});
     }
+
     objectiveChange(event) {
-        this.setState({ objective: event.target.value });
+        this.setState({objective: event.target.value});
     }
+
     fileTypeClick = (value) => {
         console.log(value)
-        this.setState({ fileType: value })
+        this.setState({fileType: value})
     }
 
     dropDown(e) {
         e.preventDefault();
-        this.setState({ dropDowm: !this.state.dropDowm })
+        this.setState({dropDowm: !this.state.dropDowm})
     }
+
     trafficType(value) {
         let trafficTypeArray = this.state.trafficTypeArray;
         trafficTypeArray[value].choose = !this.state.trafficTypeArray[value].choose
-        this.setState({ trafficTypeArray: trafficTypeArray })
+        this.setState({trafficTypeArray: trafficTypeArray})
     }
 
     render() {
-        const value = this.state.trafficTypeArray.filter((val) => { return val.choose === true }).map((val) => <span style={{
-            fontFamily: ' sans-serif',
+        const value = this.state.trafficTypeArray.filter((val) => {
+            return val.choose === true
+        }).map((val) => <span style={{
+            fontFamily: 'sans-serif',
             fontSize: '100%',
             lineHeight: 1.15,
             margin: 0, color: '#333'
@@ -249,24 +271,26 @@ class Travel extends React.Component {
                 {/*提示历史足迹按钮*/}
                 <div className="mask" onClick={this.closeMask()} hidden={this.state.maskHidden}>
                     <div className="arrow">
-                        <img src={arrow} alt={arrow} />
+                        <img src={arrow} alt={arrow}/>
                     </div>
                     <div className="point">老铁，您的<span>历史差旅</span>签呈都在这里藏着喔~</div>
                 </div>
                 <div className="notes">
                     <h4 className="num">这是本月第 <span></span> 次提交出差<a href="./travelRecord.html" className="f_right"><img
-                        src={history} alt="" /></a></h4>
+                        src={history} alt=""/></a></h4>
                     <form onSubmit={this.handleSubmit}>
-                        <Filelevel fileType={this.state.fileType} chooseFileType={this.fileTypeClick} />
+                        <Filelevel fileType={this.state.fileType} chooseFileType={this.fileTypeClick}/>
                         <List>
-                            <List.Item><span>预计行程</span><input type="text" className="planTrip" placeholder="如：西安-北京-西安(必填)" value={this.state.planTrip} onChange={this.planTripChange} /></List.Item>
+                            <List.Item><span>预计行程</span><input type="text" className="planTrip"
+                                                               placeholder="如：西安-北京-西安(必填)" value={this.state.planTrip}
+                                                               onChange={this.planTripChange}/></List.Item>
                             <DatePicker
                                 mode="date"
                                 title="出发时间"
                                 extra=""
                                 value={this.state.dateStart}
                                 onChange={date => {
-                                    this.setState({ dateStart: date })
+                                    this.setState({dateStart: date})
                                 }}
                             >
                                 <List.Item arrow="horizontal">出发时间</List.Item>
@@ -278,7 +302,7 @@ class Travel extends React.Component {
                                 format="YYYY-MM-DD"
                                 value={this.state.dateEnd}
                                 onChange={(date) => {
-                                    this.setState({ dateEnd: date })
+                                    this.setState({dateEnd: date})
                                 }}
                             >
                                 <List.Item arrow="horizontal">返回时间</List.Item>
@@ -286,14 +310,23 @@ class Travel extends React.Component {
                         </List>
 
                         <ul className="apply">
-                            <li><span>预计交通费</span><input type="number" className="trafficExp text_right" placeholder="请输入预计交通费"
-                                onChange={this.trafficExpChange} value={this.state.trafficExp} />元</li>
-                            <li><span>预计住宿费</span><input type="number" className="housExp text_right" placeholder="请输入预计住宿费"
-                                onChange={this.housExpChange} value={this.state.housExp} />元</li>
-                            <li><span>预计交食补</span><input type="number" className="mealExp text_right" placeholder="请输入预计交食补"
-                                onChange={this.mealExpChange} value={this.state.mealExp} />元</li>
-                            <li><span>预 计 其 他 </span><input type="number" className="otherExp text_right" placeholder="请输入预计其他费用"
-                                onChange={this.otherExpChange} value={this.state.otherExp} />元</li>
+                            <li><span>预计交通费</span><input type="number" className="trafficExp text_right"
+                                                         placeholder="请输入预计交通费"
+                                                         onChange={this.trafficExpChange}
+                                                         value={this.state.trafficExp}/>元
+                            </li>
+                            <li><span>预计住宿费</span><input type="number" className="housExp text_right"
+                                                         placeholder="请输入预计住宿费"
+                                                         onChange={this.housExpChange} value={this.state.housExp}/>元
+                            </li>
+                            <li><span>预计交食补</span><input type="number" className="mealExp text_right"
+                                                         placeholder="请输入预计交食补"
+                                                         onChange={this.mealExpChange} value={this.state.mealExp}/>元
+                            </li>
+                            <li><span>预 计 其 他 </span><input type="number" className="otherExp text_right"
+                                                            placeholder="请输入预计其他费用"
+                                                            onChange={this.otherExpChange} value={this.state.otherExp}/>元
+                            </li>
                         </ul>
                         <ul className="apply">
                             <li className="clearfix"><span className="f_left">交通工具</span>
@@ -304,29 +337,37 @@ class Travel extends React.Component {
                                             e.stopPropagation();
                                             e.nativeEvent.stopImmediatePropagation();
                                             this.trafficType(0)
-                                        }} className={this.state.trafficTypeArray[0].choose ? "active" : ""}>飞机</li>
+                                        }} className={this.state.trafficTypeArray[0].choose ? "active" : ""}>飞机
+                                        </li>
                                         <li onClick={(e) => {
                                             e.stopPropagation();
-                                            e.nativeEvent.stopImmediatePropagation(); this.trafficType(1)
-                                        }} className={this.state.trafficTypeArray[1].choose ? "active" : ""}>火车</li>
+                                            e.nativeEvent.stopImmediatePropagation();
+                                            this.trafficType(1)
+                                        }} className={this.state.trafficTypeArray[1].choose ? "active" : ""}>火车
+                                        </li>
                                         <li onClick={(e) => {
                                             e.stopPropagation();
-                                            e.nativeEvent.stopImmediatePropagation(); this.trafficType(2)
-                                        }} className={this.state.trafficTypeArray[2].choose ? "active" : ""}>汽车</li>
+                                            e.nativeEvent.stopImmediatePropagation();
+                                            this.trafficType(2)
+                                        }} className={this.state.trafficTypeArray[2].choose ? "active" : ""}>汽车
+                                        </li>
                                         <li onClick={(e) => {
                                             e.stopPropagation();
-                                            e.nativeEvent.stopImmediatePropagation(); this.trafficType(3)
-                                        }} className={this.state.trafficTypeArray[3].choose ? "active" : ""}>出租</li>
+                                            e.nativeEvent.stopImmediatePropagation();
+                                            this.trafficType(3)
+                                        }} className={this.state.trafficTypeArray[3].choose ? "active" : ""}>出租
+                                        </li>
                                     </ul>
                                 </div>
                             </li>
                         </ul>
                         <ul className="textarea-box">
                             <li>目的简述</li>
-                            <li><textarea className="objective" placeholder="请输入出差目的简述" onChange={this.objectiveChange} value={this.state.objective}></textarea></li>
+                            <li><textarea className="objective" placeholder="请输入出差目的简述" onChange={this.objectiveChange}
+                                          value={this.state.objective}></textarea></li>
                         </ul>
 
-                        <input className="btn inputBtn" type="submit" value='提交申请' />
+                        <input className="btn inputBtn" type="submit" value='提交申请'/>
                     </form>
                 </div>
             </div>);

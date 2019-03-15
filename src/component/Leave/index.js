@@ -12,6 +12,7 @@ import word from '../../img/word.png';
 import zip from '../../img/zip.png';
 import image from '../../img/image.png';
 import Filelevel from '../../component/FileLevel';
+import axios from "../../utils/axios";
 
 class Leave extends React.Component {
     constructor(props) {
@@ -127,12 +128,39 @@ class Leave extends React.Component {
 
         const {daytotal,hourtotal,replacement,replacemobile,reason,times,leaveListJson,files,fileType}=this.state;
         let  leaveType= leaveListJson.filter((value)=>value.choosed===true)[0].value;
-        console.log(leaveType)
+
         if(daytotal===""||hourtotal===""||replacement===""||replacemobile===""||reason===""){
             Toast.info('有必填项为空，请填写！',3)
             return false;
+        }else {
+            let start=[],end=[];
+
+            times.forEach((value,index)=>{
+                let now=new Date(value.dateStart);
+                let utcOffset = new Date(now.getTime() - (now.getTimezoneOffset() * 60000));
+                let nows=new Date(value.dateEnd);
+                let utcOffsets = new Date(nows.getTime() - (nows.getTimezoneOffset() * 60000));
+                start.push(utcOffset.toISOString().slice(0, 10));
+                end.push(utcOffsets.toISOString().slice(0, 10));
+            });
+            const data = {
+                 start: JSON.stringify(start),
+                 end: JSON.stringify(end),
+                leveltype: leaveType,
+                daytotal: daytotal,
+                hourtotal: hourtotal,
+                replacement: replacement,
+                replacemobile: replacemobile,
+                reason: reason
+            };
+             axios.post('BusinessTripApplyController/addBusinessTrip.do', data).then((res)=>{
+                 if (res.statusCode == 1) {
+                 this.props.history.push({pathname: '/'});
+                 return false;
+             }});
+            return false;
         }
-        return false;
+
     }
     //文件提交
     fileChange(event) {
@@ -299,11 +327,11 @@ class Leave extends React.Component {
                     <ul className="info-box">
                         <li className="control flex flex-align-center flex-pack-justify">
                             <label className="required" htmlFor="">工作接替人：</label>
-                            <input type="text" name="replacement" className="flex-1" value={this.state.replacement} onChange={this.replacementChange} />
+                            <input type="text" name="replacement" className="flex-1" autoComplete='off' value={this.state.replacement} onChange={this.replacementChange} />
                         </li>
                         <li className="control flex flex-align-center flex-pack-justify">
                             <label className="required" htmlFor="">接替人电话：</label>
-                            <input type="text" name="replacemobile" className="flex-1" value={this.state.replacemobile} onChange={this.replacemobileChange} />
+                            <input type="text" name="replacemobile" className="flex-1" autoComplete='off' value={this.state.replacemobile} onChange={this.replacemobileChange} />
                         </li>
                     </ul>
                     <ul className="info-box">

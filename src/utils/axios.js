@@ -3,7 +3,7 @@ import qs from 'qs'
 
 axios.defaults.timeout = 4000;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-axios.defaults.baseURL = 'http://192.168.5.138:8080/ZbtOfficial/';
+axios.defaults.baseURL = 'http://192.168.5.234:8080/ZbtOfficial/';
 //POST传参序列化
 axios.interceptors.request.use((config) => {
   if (config.method === 'post') {
