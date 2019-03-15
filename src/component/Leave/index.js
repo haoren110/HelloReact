@@ -273,7 +273,7 @@ class Leave extends React.Component {
                 <div className="del-time" onClick={() => this.deleteTimes(index)}><i
                     className="iconfont icon-delete"></i></div>
             </ul>)
-        })
+        });
         return (
             <div className="container">
                 <div className="dask"></div>

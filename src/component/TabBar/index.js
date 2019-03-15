@@ -25,10 +25,6 @@ class TaBarView extends React.Component {
         const {dispatch}=this.props;
         dispatch({type:'tabbar/loadData'});
     }
-    handClick(value){
-        //this.props.handClick(value,'CHANGESELWCT')
-        console.log(value)
-    }
 
     render() {
         const {dispatch}=this.props;

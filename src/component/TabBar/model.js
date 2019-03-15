@@ -1,7 +1,6 @@
 //name:"未知",head:"",openid:null,wxname:"未知"
 import axios from "../../utils/axios";
 
-
 export default {
     namespace: 'tabbar',
     state: {
@@ -9,7 +8,7 @@ export default {
         hidden: false,
         isPrivilege:true,
         attributeState:4,
-         obj:{}
+        obj:{}
     },
     reducers: {
         initList(state, {payload: data}) {
