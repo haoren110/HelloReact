@@ -1,12 +1,12 @@
 import React from 'react';
 import {Router, Route, Switch} from 'dva/router';
-import TabBar from '../src/component/TabBar';
-import Signature from '../src/component/Signature';
-import Travel from '../src/component/Travel';
-import Leave from '../src/component/Leave';
-import Overtime from '../src/component/Overtime';
+import TabBar from '../src/views/TabBar';
+import Signature from '../src/views/Signature';
+import Travel from '../src/views/Travel';
+import Leave from '../src/views/Leave';
+import Overtime from '../src/views/Overtime';
 
-import Egress from '../src/component/Egress';
+import Egress from '../src/views/Egress';
 
 const routes = [
     {
