@@ -44,7 +44,7 @@ class FileUpLoad extends  React.Component{
         if (suffix !== "other") {
             console.log(this)
             let filesArr = this.props.files;
-            filesArr.push({ name: file.name, size: file.size, type: fileType });
+            filesArr.push({ name: file.name, size: file.size, type: fileType,file:file });
            this.childrenChange(filesArr)
         } else {
             Toast.info('暂不支持其他格式的文件！', 2);
@@ -75,10 +75,6 @@ class FileUpLoad extends  React.Component{
                 </ul>
             </div>
         </div>);
-
-
     }
-
 }
-
 export default FileUpLoad;

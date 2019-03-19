@@ -5,7 +5,6 @@ import styles from './index.css';
 import {Link} from 'dva/router';
 class ColumItem extends  React.Component{
     render() {
-
       //const com= this.props.data.url.substring(0,1).toLocaleUpperCase()+this.props.data.url.substring(1,this.props.data.url.length-1)
        // console.log(this.props.data.url)
         if(this.props.data.num===false){
@@ -26,9 +25,7 @@ class ColumItem extends  React.Component{
                 </Link>
                </li>);
         }
-
     }
-
 }
 export default connect(
     ({ColumItem}) => ({ColumItem})
