@@ -5,8 +5,9 @@ import Signature from '../src/views/Signature';
 import Travel from '../src/views/Travel';
 import Leave from '../src/views/Leave';
 import Overtime from '../src/views/Overtime';
-
+import FillTpl from '../src/views/FillTpl';
 import Egress from '../src/views/Egress';
+import SignList from '../src/views/SignList';
 
 const routes = [
     {
@@ -15,25 +16,29 @@ const routes = [
     }, {
         path: '/signature',//首页
         component: Signature
-    },
-    {
+    }, {
         path: '/travel',//出差
         component: Travel
-    }
-    ,
+    },
     {
         path: '/leave',//请假
         component: Leave
-    }
-    ,
+    },
     {
         path: '/overtime',//加班
         component: Overtime
-    }
-    ,
+    },
     {
         path: '/egress',//外出
         component: Egress
+    },
+    {
+        path: '/fillTpl/:templateType',//外出
+        component: FillTpl
+    },
+    {
+        path: '/signList',//外出
+        component: SignList
     }
 
 ];
@@ -60,7 +65,6 @@ function RouterConfig({history}) {
                 })}
             </Switch>
         </Router>
-
     );
 }
 

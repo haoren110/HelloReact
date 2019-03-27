@@ -55,13 +55,17 @@ class FileUpLoad extends  React.Component{
         this.props.changFiles(filesArr);
     }
     render() {
+        let info= (<p className="affix-brife"></p>);
+        if(this.props.leaveListJson){
+            let    info= (<p className="affix-brife">{this.props.leaveListJson.filter((value) => {
+            return value.choosed === true
+        })[0].detail}</p>);
+        }
         //let url=baseurl+this.props.data.iconUrl;
         return (<div className="egress-box">
             {/*附件*/}
             <div className="img-view">
-                <p className="affix-brife">{this.props.leaveListJson.filter((value) => {
-                    return value.choosed === true
-                })[0].detail}</p>
+             {info}
                 <h4>
                     <label htmlFor="file">
                         <span>附件</span>

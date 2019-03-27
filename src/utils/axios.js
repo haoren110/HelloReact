@@ -7,7 +7,7 @@ axios.defaults.baseURL = 'http://192.168.5.234:8080/ZbtOfficial/';
 //POST传参序列化
 axios.interceptors.request.use((config) => {
   if (config.method === 'post') {
-    console.log(config)
+   // console.log(config)
     config.data = qs.stringify(config.data);
   }
   return config;
