@@ -1,0 +1,525 @@
+
+/* 按钮 */
+.btn {
+    width: 90%;
+    line-height: 2rem;
+    border-radius: 0.3rem;
+    color: #fff;
+    margin: 0 auto;
+    background: #2690ff;
+    text-align: center;
+}
+.flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+.flex-v {
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+.flex-1 {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+.flex-align-center {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.flex-pack-center {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+.flex-pack-justify {
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+/* 文级 单选框样式 */
+.level {
+    height: 2rem;
+    line-height: 1rem;
+    padding: 0.5rem;
+    background: #fff;
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+}
+.level li {
+    margin-right: 1rem;
+}
+.level li:nth-child(2).active {
+    color: limegreen;
+}
+.level li:nth-child(3).active {
+    color: #ff9801;
+}
+.level li:nth-child(4).active {
+    color: #c72759;
+}
+.level li:last-child {
+    margin-right: 0;
+}
+.level .help {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+}
+.level .help img {
+    width: 100%;
+    height: 100%;
+}
+.level label span {
+    margin-right: 0.3rem;
+}
+.level input:checked label span {
+    color: #ff9801;
+}
+.times {
+    font-size: 0.8rem;
+    color: #999;
+    height: 2.5rem;
+    padding: 1rem 1rem 0.5rem;
+}
+.times a {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: -0.2rem;
+}
+.times a img {
+    width: 100%;
+    height: 100%;
+}
+.img-view {
+    background: #fff;
+    margin: 0.5rem 0;
+}
+.img-view h4 {
+    height: 2rem;
+}
+.img-view label {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.img-view label img {
+    width: 1rem;
+    height: 1rem;
+}
+.preview li {
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.preview li .affix-icon {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.35rem;
+}
+.preview li .affix-icon img {
+    width: 100%;
+}
+.preview li p {
+    flex-grow: 1;
+    max-width: 80%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.preview li .del {
+    display: block;
+    font-size: 1rem;
+    color: #d60043;
+    text-align: center;
+    width: 2rem;
+    line-height: 2rem;
+}
+.mask {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 999;
+}
+.mask .arrow {
+    width: 10rem;
+    position: absolute;
+    top: 2rem;
+    right: 0rem;
+}
+.mask .arrow img {
+    width: 100%;
+}
+.mask .point {
+    width: 10rem;
+    padding: 1.1rem;
+    line-height: 1.4rem;
+    font-size: 14px;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    top: 2.5rem;
+    right: 0rem;
+}
+.mask .point span {
+    color: #ff9b00;
+}
+.notes h4 {
+    color: #999;
+    margin: 0 0.5rem;
+}
+.notes h4.num {
+    line-height: 2rem;
+}
+.notes h4.num a {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.notes h4.num a img {
+    width: 100%;
+    height: 100%;
+}
+::-webkit-input-placeholder {
+    color: #ececec;
+    font-size: 0.7rem;
+}
+:-ms-input-placeholder {
+    color: #ececec;
+    font-size: 0.7rem;
+}
+:-moz-placeholder {
+    color: #ececec;
+    font-size: 0.7rem;
+}
+::-moz-placeholder {
+    color: #ececec;
+    font-size: 0.7rem;
+}
+.apply {
+    background: #fff;
+    padding: 0.5rem 0;
+    margin: 0.5rem 0;
+}
+.apply > li {
+    position: relative;
+    height: 3rem;
+    line-height: 2rem;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ececec;
+}
+.apply > li:last-of-type,
+.apply > li.trip {
+    border: 0;
+}
+.apply > li span {
+    display: inline-block;
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
+}
+.apply > li input {
+    width: 64%;
+    height: 100%;
+    font-size: 0.8rem;
+}
+.apply > li input.text_right {
+    text-align: right;
+    margin-right: 0.5rem;
+}
+.apply > li #dateStart,
+.apply > li #dateEnd {
+    text-align: right;
+}
+.apply > li textarea {
+    width: 75%;
+    height: 5rem;
+    font-family: "MicoSoft YaHei";
+    line-height: 1rem;
+    padding: 0.5rem 0;
+}
+.textarea-box {
+    background-color: #fff;
+    padding-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.textarea-box li {
+    position: relative;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    padding: 0 0.5rem;
+}
+.textarea-box li span {
+    margin-right: 0.5rem;
+}
+.textarea-box li textarea {
+    width: 100%;
+    height: 6rem;
+    padding: 0.5rem 0;
+}
+.dropdown {
+    width: 76%;
+    height: 2rem;
+    position: relative;
+    float: left;
+}
+.dropdown-text {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #dedede;
+    border-radius: 0.3rem;
+    padding: 0 0.5rem;
+}
+.dropdown-text span {
+    color: #999;
+}
+.dropdown-list {
+    width: 100%;
+    border: 1px solid #dedede;
+    border-top: 0;
+    border-radius: 0 0 0.3rem 0.3rem;
+    padding: 0.5rem;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    top: 1.8rem;
+    z-index: 1;
+}
+.dropdown-list li {
+    height: 2rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+.dropdown-list li:last-child {
+    border: 0;
+}
+.dropdown-list li.active::after {
+    content: '';
+    float: right;
+    width: 0.5rem;
+    height: 0.5rem;
+    background: #4AB1E9;
+    border-radius: 100%;
+    margin: 0.8rem 0.4rem 0 0;
+}
+.dropdown-text::after {
+    content: '';
+    position: absolute;
+    border-bottom: 10px solid #d0d0d0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    top: 0.8rem;
+    right: 0.4rem;
+}
+.dropdown-text.active::after {
+    border-top: 10px solid #d0d0d0;
+    border-bottom: 0;
+}
+.preview li {
+    position: relative;
+}
+.preview li .del {
+    font-size: 1rem;
+    color: #d60043;
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.object {
+    position: relative;
+}
+.add-object-quantum {
+    background-color: #fff;
+    padding: 0.5rem 0.6rem;
+    margin-bottom: 0.3rem;
+    font-size: 0.7rem;
+    color: #2690ff;
+}
+.del-time {
+    position: absolute;
+    font-size: 0.7rem;
+    color: #2690ff;
+    top: 0.2rem;
+    right: 0.6rem;
+}
+.em {
+    position: absolute;
+    color: red;
+    font: 0.5rem/0.5rem "";
+    top: 45%;
+    margin-left: -0.4rem;
+}
+.boxtitle {
+    font: 0.8rem/1rem "";
+    color: #fff;
+    background-color: #2690ff;
+    padding: 0.4rem;
+    text-align: center;
+}
+.trafficlist {
+    position: relative;
+    margin: 0 0.5rem;
+    box-shadow: 0rem 0.2rem 0.6rem #999;
+}
+.trafficlist .dropdown {
+    width: 73%;
+}
+.trafficlist .apply,
+.trafficlist .textarea-box {
+    margin: 0;
+}
+.trafficlist .apply li input {
+    width: 67%;
+    border-color: #ded3b7;
+    margin-right: 0;
+    padding-right: 0.5rem;
+    text-align: right;
+}
+.trafficlist .apply li input.trip_meal {
+    width: 60%;
+}
+.trafficlist .trip_date {
+    text-align: right;
+}
+.trafficlist ul li span {
+    font-size: 0.8rem;
+}
+.trafficlist .textarea-box textarea {
+    height: auto;
+}
+.spantip {
+    color: #999;
+}
+.expenses .textarea-box li textarea {
+    height: auto;
+}
+.info-box {
+    background-color: #fff;
+    padding: 0 0.6rem;
+}
+.info-box > li {
+    min-height: 3rem;
+}
+.info-box > li .time-area-box {
+    position: relative;
+    z-index: 9;
+}
+.info-box > li .time-area-box::after {
+    content: '';
+    position: absolute;
+    border-bottom: 10px solid #d0d0d0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    top: 0.75rem;
+    right: 0.4rem;
+}
+.info-box > li .time-area-box.active::after {
+    border-top: 10px solid #d0d0d0;
+    border-bottom: 0;
+}
+.info-box > li .time-area-box input {
+    width: 100%;
+    padding: 0 0.5rem;
+    height: 2rem;
+    border: 1px solid #f0f0f0;
+    border-radius: 0.3rem;
+}
+.info-box > li .time-area-box .time-area {
+    display: none;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border-radius: 0 0 0.3rem 0.3rem;
+    border-style: solid;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 0;
+    border-color: #f0f0f0;
+    position: absolute;
+    top: 1.7rem;
+    left: 0;
+    z-index: 9;
+    background-color: #fff;
+}
+.info-box > li .time-area-box .time-area.active {
+    display: block;
+}
+.info-box > li .time-area-box .time-area li {
+    line-height: 2rem;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+}
+.info-box > li .time-area-box .time-area li.active::after {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: #4AB1E9;
+    border-radius: 50%;
+    position: absolute;
+    right: 0.3rem;
+    top: 0.75rem;
+}
+.info-box > li .time-area-box .time-area li:last-child {
+    border-bottom: 0;
+}
+.info-box > li label.required {
+    position: relative;
+    padding-left: 0.5rem;
+}
+.info-box > li label.requiredd {
+    position: relative;
+    padding-left: 0.5rem;
+}
+.info-box > li label.required::after {
+    content: '*';
+    color: red;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.info-box > li label.requiredd::after {
+    content: '*';
+    color: red;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.info-box > li.control {
+    border-bottom: 1px solid #f0f0f0;
+}
+.info-box > li.control input {
+    height: 2rem;
+    padding-right: 0.5rem;
+    text-align: right;
+}
+.info-box > li.areabox {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.info-box > li textarea {
+    padding: 0.3rem;
+    margin: 0.5rem 0;
+    height: 4rem;
+    overflow-x: visible;
+    overflow-y: visible;
+}
+.time-box {
+    margin: 0.3rem 0;
+}

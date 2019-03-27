@@ -1,0 +1,291 @@
+body {
+    background: #f5f5f5;
+}
+/* 用户头像 */
+.avator-box {
+    height: 4rem;
+    padding: 0.5rem;
+    background: #fff;
+    margin: 1rem 0;
+}
+.avator-box a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.avator-box .avator {
+    width: 3rem;
+    height: 3rem;
+    overflow: hidden;
+}
+.avator-box .avator img {
+    width: 100%;
+}
+.avator-box .avator-name li {
+    margin-left: 0.6rem;
+    font-size: 0.9rem;
+    line-height: 1.6rem;
+}
+.avator-box .avator-name li:last-of-type {
+    font-size: 0.8rem;
+}
+.avator-box .avator-name li .sex {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.5rem;
+}
+.avator-box .avator-name li .sex img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.other-info {
+    padding: 0.5rem;
+    background: #fff;
+    margin-bottom: 0.5rem;
+}
+.other-info li {
+    line-height: 2.5rem;
+    font-size: 0.8rem;
+    border-bottom: 1px solid #ececec;
+}
+.other-info li:last-child {
+    border: 0;
+}
+.other-info li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.other-info li a .telTip {
+    color: #999;
+    margin-left: 1rem;
+    font-size: 0.6rem;
+}
+.other-info li a .vip {
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.5rem;
+}
+.other-info li a .vip img {
+    width: 100%;
+}
+.versoin {
+    text-align: center;
+    color: #c72759;
+    font-family: 'Micosoft YaHei';
+    font-size: 0.7rem;
+}
+.header {
+    line-height: 2rem;
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
+    background: #fff;
+    font-size: 0.8rem;
+    margin: 0.5rem 0;
+}
+.header .head {
+    width: 2rem;
+    height: 2rem;
+}
+.header .head img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.personal {
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    background: #fff;
+}
+.personal ul {
+    padding: 0.5rem;
+    height: 2.5rem;
+    font-size: 0.8rem;
+    border-bottom: 1px solid #ececec;
+}
+.personal ul:last-child {
+    border: 0;
+}
+.personal ul li:first-child span {
+    float: left;
+    width: 1rem;
+    height: 100%;
+    margin-right: 00.5rem;
+}
+.personal ul li:first-child span img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.personal ul li:last-child {
+    color: #999;
+}
+.exit {
+    padding: 0.5rem;
+    background: #fff;
+    color: #c72759;
+    text-align: center;
+}
+.distrub {
+    padding: 0.5rem;
+    background: #fff;
+    margin: 0.5rem 0;
+}
+.distrub .setting {
+    padding: 0.5rem 0;
+}
+.distrub .setting label {
+    display: block;
+    width: 2.1rem;
+    height: 1.1rem;
+    border-radius: 6rem;
+    background: #999;
+    position: relative;
+}
+.distrub .setting label::after {
+    content: '';
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #fff;
+    position: absolute;
+    left: 0.05rem;
+    top: 0.05rem;
+    transition: all 0.5s;
+}
+.distrub .setting #distrub:checked + label {
+    background: #1DA30B;
+}
+.distrub .setting #distrub:checked + label:after {
+    left: 1.05rem;
+}
+.distrub p {
+    color: #999;
+}
+.distrub .period {
+    display: none;
+    margin: 0.5rem 0;
+}
+.distrub .period ul {
+    border-top: 1px solid #c3c3c3;
+    padding: 0.5rem 0;
+}
+.distrub .period ul input {
+    width: 2rem;
+    color: #666;
+}
+.mob {
+    text-align: center;
+    margin: 5rem 0;
+}
+.mob li {
+    line-height: 1.2rem;
+    font-size: 0.8rem;
+}
+.mob li:last-of-type {
+    color: #2690ff;
+}
+.caption {
+    color: #999;
+    margin: 0 1rem;
+}
+.caption li {
+    line-height: 1.4rem;
+    margin: 0.3rem 0;
+}
+.modify {
+    width: 90%;
+    border-radius: 0.3rem;
+    color: #fff;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 2rem;
+    background: #2690ff;
+    padding: 0.5rem;
+}
+.revise {
+    width: 100%;
+}
+.revise li {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    line-height: 2rem;
+    margin-bottom: 1rem;
+}
+.revise li input {
+    line-height: 1rem;
+    width: 80%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: .5rem;
+    font-size: .8rem;
+    background-color: transparent;
+}
+.revise li p {
+    position: absolute;
+    left: 13%;
+    bottom: 0;
+    transform: translateY(72%);
+    color: #E78A5E;
+    display: none;
+}
+.revise li #entry {
+    display: inline-block;
+    width: 60%;
+    line-height: 2rem;
+    background-color: #C24D82;
+    border-radius: .5rem;
+    font-size: .8rem;
+    color: #fff;
+    margin-top: 1rem;
+}
+.revise li #getCode {
+    position: absolute;
+    right: 10%;
+    top: 1px;
+    line-height: 2rem;
+    width: 5rem;
+    background-color: #2690ff;
+    color: #fff;
+    border-radius: .5rem;
+}
+.cover {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 99999;
+    display: none;
+    overflow: hidden;
+}
+.cover .floating {
+    width: 90%;
+    height: 12rem;
+    padding: 2rem 0;
+    border-radius: 0.3rem;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+.cover .floating .btn-box {
+    width: 100%;
+    border-top: 1px solid #c3c3c3;
+    position: absolute;
+    bottom: 0;
+}
+.cover .floating .btn-box li {
+    width: 50%;
+    padding: 0.8rem;
+    text-align: center;
+    float: left;
+}
+.cover .floating .btn-box li:last-child {
+    border-left: 1px solid #c3c3c3;
+    color: #2690ff;
+}

@@ -157,7 +157,6 @@ class SignList extends React.Component {
                 </div>
             );
         };
-
         return (
             <ListView
                 ref={el => this.lv = el}
