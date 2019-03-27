@@ -9,6 +9,7 @@ import mine3 from '../../img/ordHistory.png';
 import mine4 from '../../img/traHistory.png';
 import mine5 from '../../img/over_time.png';
 import mine7 from '../../img/go_out.png';
+import nores from '../../img/nores.png';
 import {Route} from "react-router-dom";
 const array=[
     {icon:`${mine3}`,text:"事务",url:"/signature"},
@@ -70,6 +71,10 @@ class AddView extends  React.Component{
             <div className="infoCenter">
                 <h2><span className="line"></span> 其他应用 </h2>
                 <ItemTwos array={array1}/>
+            </div>
+            <div className="nores">
+                <img src={nores} alt="" />
+                    <p>更多功能，敬请期待...</p>
             </div>
         </div>);
     }
