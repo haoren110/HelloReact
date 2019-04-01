@@ -1,7 +1,7 @@
 import React from 'react';
 import affix from "../../img/affix.png";
 import {Toast} from "antd-mobile";
-//const baseurl="https://weixin.buchang.com/ZbtOfficial/";
+
 class FileUpLoad extends  React.Component{
     constructor(props) {
         super(props);

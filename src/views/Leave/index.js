@@ -308,8 +308,9 @@ class Leave extends React.Component {
                     <div className="overtime-quantum">
                         {timesList}
                     </div>
-                    <div className="add-time-quantum" onClick={() => this.addTimes()}><i
-                        className="iconfont icon-roundadd"></i> 新增时间段
+                    <div className="add-time-quantum" onClick={() => this.addTimes()}>
+                        <i className="iconfont icon-roundadd"></i>
+                        新增时间段
                     </div>
 
                     <ul className="semihTotal">

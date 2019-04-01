@@ -15,7 +15,7 @@ class BasicExample  extends React.Component{
     constructor(props){
         super(props);
         console.log(props);
-        this.state={info:[],name:'',fileType:1, files: []};
+        this.state={info:[],name:'',fileType:1, files: [],dropDowm: true,};
     }
     componentDidMount() {
         const index = parseInt(this.props.match.params.templateType);
@@ -24,7 +24,7 @@ class BasicExample  extends React.Component{
         })
     }
     fileTypeClick = (value) => {
-        console.log(value)
+        //console.log(value)
         this.setState({ fileType: value })
     }
     //文件删除
@@ -68,7 +68,7 @@ class BasicExample  extends React.Component{
             }
             return elm;
         });
-        const InfoList= this.state.info.map((value,index)=>{
+        const infoList= this.state.info.map((value,index)=>{
             console.log(value)
             let elm;
             switch (value.type) {
@@ -82,7 +82,7 @@ class BasicExample  extends React.Component{
                     elm=<Radio data={value} key={index}/>;
                     break;
                 case 'checkbox':
-                    elm=<Checkbox data={value} key={index}/>;
+                    elm=<Checkbox data={value} key={index} dropDown={this.state.dropDowm}/>;
                     break;
                 case 'time':
                     elm=<Time data={value} key={index}/>;
@@ -90,7 +90,7 @@ class BasicExample  extends React.Component{
             }
             return elm;
         })
-        return (<div className="container" style={{maxWidth:'640px',minWidth:'320px',margin:'0 auto'}}>
+        return (<div className="container" style={{maxWidth:'640px',minWidth:'320px',margin:'0 auto',padding:'0'}}>
             <div className="dask"></div>
             {/*签呈标签 */}
             <h4 className="times"><span>{this.state.name}</span>
@@ -101,7 +101,7 @@ class BasicExample  extends React.Component{
                 <Filelevel fileType={this.state.fileType} chooseFileType={this.fileTypeClick} />
                 {/*填写模板*/}
                 <form className="filltpl">
-                    {InfoList}
+                    {infoList}
                 </form>
                {/*附件*/}
                 <FileUpLoad filesList={filesList}  files={this.state.files} changFiles={this.changeFiles} />
@@ -152,13 +152,77 @@ function Radio(props) {
     );
 }
 
-function Checkbox(props) {
-    return (
-        <div className='template-input'>
-            <label className='{{isRequired?"active":""}}'>{props.data.val}</label>
-            <input type="text"  placeholder={props.data.placeholder} maxLength={props.data.length} name={props.data.name}/>
-        </div>
-    );
+class Checkbox extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={
+            trafficTypeArray: [{value: '飞机', choose: false}, {value: '火车', choose: false}, {
+                value: '汽车',
+                choose: false
+            }, {value: '出租', choose: false}]
+        };
+    }
+    dropDown(e) {
+        e.preventDefault();
+        this.setState({dropDowm: !this.state.dropDowm})
+    }
+    trafficType(value) {
+        let trafficTypeArray = this.state.trafficTypeArray;
+        trafficTypeArray[value].choose = !this.state.trafficTypeArray[value].choose;
+        this.setState({trafficTypeArray: trafficTypeArray})
+    }
+    render() {
+        const  list= this.props.data.droplist.map((item,index)=>{
+            return <li onClick='selectCheckbox(this)' data-index={index} data-val={item.item} key={index}>{item.item}</li>
+        });
+        const value = this.state.trafficTypeArray.filter((val) => {
+            return val.choose === true
+        }).map((val) => <span style={{
+            fontFamily: 'sans-serif',
+            fontSize: '100%',
+            lineHeight: 1.15,
+            margin: 0, color: '#333'
+        }} key={val.value}>{val.value}</span>);
+        let value2 = "请选择";
+        if (!!value && value.length !== 0) {
+            value2 = value
+        } else {
+            value2 = "请选择"
+        }
+        return (
+            <ul className="apply">
+                <li className="clearfix"><span className="f_left">交通工具</span>
+            <div className="dropdown" style={{width:'72%'}}>
+                <div className="dropdown-text" onClick={(e) => this.dropDown(e)}>{value2}</div>
+                <ul className="dropdown-list" hidden={this.props.dropDowm}>
+                    <li onClick={(e) => {
+                        e.stopPropagation();
+                        e.nativeEvent.stopImmediatePropagation();
+                        this.trafficType(0)
+                    }} className={this.state.trafficTypeArray[0].choose ? "active" : ""}>飞机
+                    </li>
+                    <li onClick={(e) => {
+                        e.stopPropagation();
+                        e.nativeEvent.stopImmediatePropagation();
+                        this.trafficType(1)
+                    }} className={this.state.trafficTypeArray[1].choose ? "active" : ""}>火车
+                    </li>
+                    <li onClick={(e) => {
+                        e.stopPropagation();
+                        e.nativeEvent.stopImmediatePropagation();
+                        this.trafficType(2)
+                    }} className={this.state.trafficTypeArray[2].choose ? "active" : ""}>汽车
+                    </li>
+                    <li onClick={(e) => {
+                        e.stopPropagation();
+                        e.nativeEvent.stopImmediatePropagation();
+                        this.trafficType(3)
+                    }} className={this.state.trafficTypeArray[3].choose ? "active" : ""}>出租
+                    </li>
+                </ul>
+            </div>
+            </li></ul>);
+    }
 }
 
 function Textarea(props) {
